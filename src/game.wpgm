@@ -1,13 +1,16 @@
 import wollok.game.*
-
+import caballerosRivales.*
 
 program game {
+	
 	game.title("Caballeros Rivales")
 	game.height(21)
 	game.width(21)
 	game.cellSize(20)
-	game.boardGround("Portada rapida.png")
-	
+	game.boardGround("Portada rapida.jpeg")
+	keyboard.num1().onPressDo{ caballerosRivales.setDificultad(1)}
+	keyboard.num2().onPressDo{ caballerosRivales.setDificultad(2)}
+	keyboard.num3().onPressDo{ caballerosRivales.setDificultad(3)}
 	/* 
 	//TECLADO
 	keyboard.c().onPressDo{ puntero.pintar()}
