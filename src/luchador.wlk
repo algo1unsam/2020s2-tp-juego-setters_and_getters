@@ -1,4 +1,4 @@
-object abc {
+object Luchador{
 	
-	
+
 }

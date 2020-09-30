@@ -2,5 +2,25 @@ import wollok.game.*
 
 
 program game {
+	game.title("Caballeros Rivales")
+	game.height(21)
+	game.width(21)
+	game.cellSize(20)
+	game.boardGround("Portada rapida.png")
 	
+	/* 
+	//TECLADO
+	keyboard.c().onPressDo{ puntero.pintar()}
+	keyboard.x().onPressDo{ puntero.ponerCruz()}
+	keyboard.space().onPressDo{ jugador.consultarIntentos()}
+	keyboard.num1().onPressDo{ jugador.cargarTablero1()}
+	keyboard.num2().onPressDo{ jugador.cargarTablero2()}
+	keyboard.num3().onPressDo{ jugador.cargarTablero3()}
+	keyboard.up().onPressDo{ puntero.moverArriba()}
+	keyboard.down().onPressDo{ puntero.moverAbajo()}
+	keyboard.left().onPressDo{ puntero.moverIzquierda()}
+	keyboard.right().onPressDo{ puntero.moverDerecha()}
+	*/
+	
+	game.start()
 }
