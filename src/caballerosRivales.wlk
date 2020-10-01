@@ -6,7 +6,7 @@ object caballerosRivales {
 	
 	method comienzo(lvlDificultad){
 		dificultad = lvlDificultad
-		velocidad.setearVisual()
+		velocidad.setearVisual(lvlDificultad)
 		
 	}
 	
