@@ -1,8 +1,13 @@
+import wollok.game.*
+import velocidad.*
 
 object caballerosRivales {
 	var dificultad 
-	method setDificultad(lvlDificultad){
+	
+	method comienzo(lvlDificultad){
 		dificultad = lvlDificultad
+		velocidad.setearVisual()
+		
 	}
 	
 	
