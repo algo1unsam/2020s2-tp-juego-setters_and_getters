@@ -40,9 +40,9 @@ class Caballero{
 	method avanzar(){
 		
 		if(esRival){
-			self.position().right(1)
+			self.position(self.position().right(1))
 		}else{
-			self.position().left(1)
+			self.position(self.position().left(1))
 		}
 		
 		
