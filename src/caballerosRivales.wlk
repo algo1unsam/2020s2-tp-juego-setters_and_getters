@@ -9,12 +9,12 @@ object caballerosRivales {
 					//sino que se guarda 1,0.5,0.3
 	
 	method comienzo(lvlDificultad){
+		
 		dificultad = lvlDificultad
 		velocidad.setearVisual(lvlDificultad)
 	}
 	method seleccionVelocidad(){
 		velocidadAdquirida = velocidad.tomaVelocidad()
-		
 		
 	}
 	

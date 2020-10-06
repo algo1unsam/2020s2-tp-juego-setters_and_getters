@@ -1,13 +1,21 @@
 import wollok.game.*
 
 object velocidad {
+	var rival = new Caballero(image = "prueba_1.png",position= game.at(0, 7),esRival=true)
+	var jugador = new Caballero(image = "prueba_2.png",position= game.at(35, 7),esRival=false)
 	
 	method setearVisual(lvlDificultad) {
 		game.addVisual(new Pantalla(image = "escVel01b.jpg",position= game.at(0, 0) ))
+		game.addVisual(jugador)
+		game.addVisual(rival)
 		puntero.setearVisual(lvlDificultad)
+		
 		
 	}
 	method tomaVelocidad(){
+		
+		game.onTick( 100, "avanzaRival", { rival.avanzar()})
+		game.onTick(100, "avanzaJugador", { jugador.avanzar()})
 		return (puntero.seleccion())
 	}
 
@@ -24,6 +32,23 @@ class Pantalla {
 
 }
 
+class Caballero{
+	var property image
+	var property position
+	var esRival 
+	
+	method avanzar(){
+		
+		if(esRival){
+			self.position().right(1)
+		}else{
+			self.position().left(1)
+		}
+		
+		
+	}
+	
+}
 object puntero {
 
 	var property position = new Position(x = 49, y = 7)
