@@ -1,11 +1,14 @@
 import wollok.game.*
 
 object velocidad {
-
+	
 	method setearVisual(lvlDificultad) {
 		game.addVisual(new Pantalla(image = "escVel01b.jpg",position= game.at(0, 0) ))
-		game.addVisual(puntero)
-		game.onTick(lvlDificultad * 100, "mueveFlecha", { puntero.moverse()})
+		puntero.setearVisual(lvlDificultad)
+		
+	}
+	method tomaVelocidad(){
+		return (puntero.seleccion())
 	}
 
 }
@@ -25,7 +28,7 @@ object puntero {
 
 	var property position = new Position(x = 49, y = 7)
 
-	method image() = "flecha.png"
+	var property  image = "flecha.png"
 
 	method moverse( ) {
 		if (not (self.position().y() == 22)) {
@@ -34,8 +37,24 @@ object puntero {
 			self.position(self.position().down(15))
 		}
 	}
+	method setearVisual(lvlDificultad){
+		game.addVisual(self)
+		game.onTick(lvlDificultad * 100, "mueveFlecha", { self.moverse()})
+	}
 	
 	method seleccion(){
+		game.removeTickEvent( "mueveFlecha")
+		
+		if (self.position().y()>=7 && self.position().y()<17 ){
+			game.say(self, "mi velocidad es 100")
+			return 100
+		}else if (self.position().y()>=17 && self.position().y()<22 ){
+			game.say(self, "mi velocidad es 200")
+			return 200
+		}else{
+			game.say(self, "mi velocidad es 300")
+			return 400
+		}
 		
 	}
 

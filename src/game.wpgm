@@ -1,6 +1,6 @@
 import wollok.game.*
 import caballerosRivales.*
-
+import velocidad.*
 program game {
 	
 	game.title("Caballeros Rivales")
@@ -11,7 +11,7 @@ program game {
 	keyboard.num1().onPressDo{ caballerosRivales.comienzo(1)}
 	keyboard.num2().onPressDo{ caballerosRivales.comienzo(2*0.25)}
 	keyboard.num3().onPressDo{ caballerosRivales.comienzo(3*0.1)}
-	keyboard.space().onPressDo{}
+	keyboard.space().onPressDo{caballerosRivales.seleccionVelocidad()}
  
 	
 	
