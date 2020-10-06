@@ -3,9 +3,9 @@ import wollok.game.*
 object velocidad {
 
 	method setearVisual(lvlDificultad) {
-		game.addVisual(primerPantalla)
+		game.addVisual(new Pantalla(image = "escVel01b.jpg",position= game.at(0, 0) ))
 		game.addVisual(puntero)
-		game.onTick(lvlDificultad * 1000, "mueveFlecha", { puntero.moverse()})
+		game.onTick(lvlDificultad * 100, "mueveFlecha", { puntero.moverse()})
 	}
 
 }
@@ -13,11 +13,11 @@ object velocidad {
 //naye:las pantalals se podrian implementar como clases,y que vamos a usar varias
 //y todas tendrian lo mismo, nombre del archivo y posicion
 //no se me ocurren muchos lugares donde implementar clases...
-object primerPantalla {
+class Pantalla {
 
-	method image() = "escVel01b.jpg"
+	var property image
 
-	method position() = game.at(0, 0)
+	var property position 
 
 }
 
@@ -33,6 +33,10 @@ object puntero {
 		} else {
 			self.position(self.position().down(15))
 		}
+	}
+	
+	method seleccion(){
+		
 	}
 
 }

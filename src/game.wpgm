@@ -9,21 +9,11 @@ program game {
 	game.cellSize(20) 
 	game.boardGround("titulo0.jpg")
 	keyboard.num1().onPressDo{ caballerosRivales.comienzo(1)}
-	keyboard.num2().onPressDo{ caballerosRivales.comienzo(2)}
-	keyboard.num3().onPressDo{ caballerosRivales.comienzo(3)}
-	/* 
-	//TECLADO
-	keyboard.c().onPressDo{ puntero.pintar()}
-	keyboard.x().onPressDo{ puntero.ponerCruz()}
-	keyboard.space().onPressDo{ jugador.consultarIntentos()}
-	keyboard.num1().onPressDo{ jugador.cargarTablero1()}
-	keyboard.num2().onPressDo{ jugador.cargarTablero2()}
-	keyboard.num3().onPressDo{ jugador.cargarTablero3()}
-	keyboard.up().onPressDo{ puntero.moverArriba()}
-	keyboard.down().onPressDo{ puntero.moverAbajo()}
-	keyboard.left().onPressDo{ puntero.moverIzquierda()}
-	keyboard.right().onPressDo{ puntero.moverDerecha()}
-	*/
+	keyboard.num2().onPressDo{ caballerosRivales.comienzo(2*0.25)}
+	keyboard.num3().onPressDo{ caballerosRivales.comienzo(3*0.1)}
+	keyboard.space().onPressDo{}
+ 
+	
 	
 	game.start()
 }
