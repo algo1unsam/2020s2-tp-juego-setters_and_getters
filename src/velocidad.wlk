@@ -22,14 +22,15 @@ object velocidad {
 		return (jugador.position().x() - rival.position().x())
 	}
 
-	method imageColision(unaPosicion) { // /Cuando se alcanza la distancia minima entre ellos, cambiamos la pantalla
+	method imageColision(unaPosicion) { // /Cuando se alcanza la distancia minima entre ellos, agregamos la imagen de los caballeros
+										//chocando,en ese momento se agrega el mensaje para continuar a la siguiente pantalla
 		
 		game.addVisual(new Pantalla(image = "caballeros2.png", position = unaPosicion))
 		game.removeTickEvent("avanzaRival")
 		game.removeTickEvent("avanzaJugador")
-		
 		game.removeVisual(rival)
 		game.removeVisual(jugador)
+		game.addVisual(new Pantalla(image = "mensajePrueba.png", position = new Position(x = 15, y =0)))
 	}
 
 }
