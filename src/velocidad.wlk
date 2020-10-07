@@ -23,8 +23,10 @@ object velocidad {
 	}
 
 	method imageColision(unaPosicion) { // /Cuando se alcanza la distancia minima entre ellos, cambiamos la pantalla
-		const pantallaColision = new Pantalla(image = "caballeros2.png", position = unaPosicion)
-		game.addVisual(pantallaColision)
+		
+		game.addVisual(new Pantalla(image = "caballeros2.png", position = unaPosicion))
+		game.removeTickEvent("avanzaRival")
+		game.removeTickEvent("avanzaJugador")
 		game.removeVisual(rival)
 		game.removeVisual(jugador)
 	}
