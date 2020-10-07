@@ -42,10 +42,9 @@ object velocidad {
 //y todas tendrian lo mismo, nombre del archivo y posicion
 //no se me ocurren muchos lugares donde implementar clases...
 class Visual {
-
 	var property image
 	var property position
-
+	
 }
 
 class Caballero inherits Visual{
@@ -83,6 +82,7 @@ class Puntero inherits Visual {
 
 	method seleccion() {
 		game.removeTickEvent("mueveFlecha")
+		
 		if (self.position().y() >= 7 && self.position().y() < 17) {
 			game.say(self, "mi velocidad es 100")
 			return 100
@@ -90,7 +90,7 @@ class Puntero inherits Visual {
 			game.say(self, "mi velocidad es 200")
 			return 200
 		} else {
-			game.say(self, "mi velocidad es 300")
+			game.say(self, "mi velocidad es 400")
 			return 400
 		}
 	}

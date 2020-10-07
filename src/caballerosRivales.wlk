@@ -1,7 +1,9 @@
 import wollok.game.*
 import velocidad.*
+import punteria.*
 
 object caballerosRivales {
+	var punteriaAdquirida
 	var velocidadAdquirida
 	var dificultad //obs: guardamos la dificultad porque se utiliza luego
 					//en la segunda pantalla cuando hay que apuntar
@@ -15,6 +17,13 @@ object caballerosRivales {
 	}
 	method seleccionVelocidad(){
 		velocidadAdquirida = velocidad.tomaVelocidad()
+		
+	}
+	method mecanicaPunteria(){
+		game.clear()
+		
+		
+		
 		
 	}
 	
