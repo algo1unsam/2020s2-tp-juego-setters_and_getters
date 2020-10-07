@@ -4,11 +4,13 @@ object velocidad {
 
 	var rival = new Caballero(image = "prueba_1.png", position = game.at(0, 7), esRival = true)
 	var jugador = new Caballero(image = "prueba_2.png", position = game.at(35, 7), esRival = false)
-
+	var puntero = new Puntero(position = new Position(x = 49, y = 7), image = "flecha.png")
+	
 	method setearVisual(lvlDificultad) {
-		game.addVisual(new Pantalla(image = "escVel01b.jpg", position = game.at(0, 0)))
+		game.addVisual(new Visual(image = "escVel01b.jpg", position = game.at(0, 0)))
 		game.addVisual(jugador)
 		game.addVisual(rival)
+		
 		puntero.setearVisual(lvlDificultad)
 	}
 
@@ -25,31 +27,30 @@ object velocidad {
 	method imageColision(unaPosicion) { // /Cuando se alcanza la distancia minima entre ellos, agregamos la imagen de los caballeros
 										//chocando,en ese momento se agrega el mensaje para continuar a la siguiente pantalla
 		
-		game.addVisual(new Pantalla(image = "caballeros2.png", position = unaPosicion))
+		game.addVisual(new Visual(image = "caballeros2.png", position = unaPosicion))
 		game.removeTickEvent("avanzaRival")
 		game.removeTickEvent("avanzaJugador")
 		game.removeVisual(rival)
 		game.removeVisual(jugador)
-		game.addVisual(new Pantalla(image = "mensajePrueba.png", position = new Position(x = 15, y =0)))
+		game.addVisual(new Visual(image = "mensajePrueba.png", position = new Position(x = 15, y =0)))
 	}
+	
 
 }
 
 //naye:las pantalals se podrian implementar como clases,y que vamos a usar varias
 //y todas tendrian lo mismo, nombre del archivo y posicion
 //no se me ocurren muchos lugares donde implementar clases...
-class Pantalla {
+class Visual {
 
 	var property image
 	var property position
 
 }
 
-class Caballero {
+class Caballero inherits Visual{
 
-	var property image
-	var property position
-	var esRival
+	var esRival //clase rival podria heredar caballero y sobre escribir avanazar? (preg si vale la pena)
 
 	method avanzar() {
 		if (velocidad.comparoPosiciones() < 1) {
@@ -65,10 +66,7 @@ class Caballero {
 
 }
 
-object puntero {
-
-	var property position = new Position(x = 49, y = 7)
-	var property image = "flecha.png"
+class Puntero inherits Visual {
 
 	method moverse( ) {
 		if (not (self.position().y() == 22)) {
