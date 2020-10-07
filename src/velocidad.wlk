@@ -18,13 +18,15 @@ object velocidad {
 		return (puntero.seleccion())
 	}
 
-	method comaparoPosiciones() {  ///La posicion en X de 'jugador' es la positiva, sino la resta me da (-)
+	method comparoPosiciones() { // /La posicion en X de 'jugador' es la positiva, sino la resta me da (-)
 		return (jugador.position().x() - rival.position().x())
 	}
 
-	method imageColision() {   ///Cuando se alcanza la distancia minima entre ellos, cambiamos la pantalla
-		const pantallaColision = new Pantalla(image = null, position = game.at(0, 0))
+	method imageColision(unaPosicion) { // /Cuando se alcanza la distancia minima entre ellos, cambiamos la pantalla
+		const pantallaColision = new Pantalla(image = "caballeros2.png", position = unaPosicion)
 		game.addVisual(pantallaColision)
+		game.removeVisual(rival)
+		game.removeVisual(jugador)
 	}
 
 }
@@ -46,13 +48,14 @@ class Caballero {
 	var esRival
 
 	method avanzar() {
-		if (velocidad.comaparoPosiciones() >= 1) {
+		if (velocidad.comparoPosiciones() < 1) {
+			velocidad.imageColision(self.position())
+		} else {
 			if (esRival) {
 				self.position(self.position().right(1))
 			} else {
 				self.position(self.position().left(1))
 			}
-			velocidad.imageColision()
 		}
 	}
 
