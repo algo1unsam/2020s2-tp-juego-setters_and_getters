@@ -27,6 +27,7 @@ object velocidad {
 		game.addVisual(new Pantalla(image = "caballeros2.png", position = unaPosicion))
 		game.removeTickEvent("avanzaRival")
 		game.removeTickEvent("avanzaJugador")
+		
 		game.removeVisual(rival)
 		game.removeVisual(jugador)
 	}
