@@ -22,7 +22,7 @@ object caballerosRivales {
 	method mecanicaPunteria(){
 		game.clear()
 		
-		
+		punteria.enfrentados()
 		
 		
 	}
