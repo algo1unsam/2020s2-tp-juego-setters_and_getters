@@ -1,6 +1,8 @@
 import wollok.game.*
 
-object Luchador{
-	
-	
+object luchador {
+
+	method equipo() = "River Plate el mas grande"
+
 }
+
