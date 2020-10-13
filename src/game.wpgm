@@ -1,18 +1,12 @@
 import wollok.game.*
 import caballerosRivales.*
-import velocidad.*
-import punteria.*
+
 
 program game {
-	game.title("Caballeros Rivales")
-	game.height(30)
-	game.width(55)
-	game.cellSize(20)
-	game.boardGround("titulo0.jpg")
-	keyboard.num1().onPressDo{ caballerosRivales.comienzo(1) }
-	keyboard.num2().onPressDo{ caballerosRivales.comienzo(2 * 0.25) }
-	keyboard.num3().onPressDo{ caballerosRivales.comienzo(3 * 0.1) }
-	keyboard.space().onPressDo{ caballerosRivales.seleccionVelocidad() }
-	keyboard.enter().onPressDo{ caballerosRivales.mecanicaPunteria() }
+	
+	
+	caballerosRivales.seteoTablero()
+	caballerosRivales.seteoTeclas()
+	
 	game.start()
 }

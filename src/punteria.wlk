@@ -2,52 +2,56 @@ import wollok.game.*
 import clasesComunes.*
 import caballerosRivales.*
 
-object punteria {
-//	comentario
-	var property image = "background_2.png"
-	const property position = game.at(0, 0)
+object punteria inherits Visual(image = "background_2.png", position = game.at(0, 0)) {
 
-	method enfrentados() {
+	method enfrentados(lvlDificultad) {
 		game.addVisual(self)
-		game.addVisual(rival)
-		game.addVisual(blanco)
-		game.addVisualCharacter(cursor)
-	/*game.whenCollideDo(cursor,{unaExtremidad=>cursor.una_actividad(})
-	 *   .Cuando el cursor colsione con una extremidad del rival, le decimos al cursor
-	 que haga algo.*/
+		game.addVisual(rivalFrente)
+		puntero.setearVisual(lvlDificultad)
+		game.addVisualCharacter(mira)
+		
 	}
 
 }
 
-object cursor {
-
-	const property image = "lanza.png"
-	var property position = game.at(30, 5)
-
-}
-
-object rival {
-
-	const property image = "caballero_rojo_frente.png"
-	var property position = game.at(20, 9)
-
-}
-
-object blanco {
-
-	var property image
-//	Vpy a implementar que el blanco se coloque en una posicion random sobre el rival 
-	var property position = rival.position().right(2).up(3)
-
-	method image() {
-		if (caballerosRivales.dificultad() == 1) {
-			return "blanco_nivel_1.png"
-		} else if (caballerosRivales.dificultad() == 0.5) {
-			return "blanco_nivel_2.png"
-		} else {
-			return "blanco_nivel_3.png"
-		}
+object rivalFrente inherits Caballero(image = "caballero_rojo_frente.png", position = game.at(20, 9)) {
+	// const movimientos 
+	override method moverse() {
 	}
+
+	override method movimiento() {
+	}
+
+}
+
+object puntero inherits Puntero(image = "diana1.png", position = game.at(5, 15)) {
+
+	override method seleccion() {
+	}
+
+	override method setearVisual(lvlDificultad) {
+		game.addVisual(self)
+	}
+
+	override method moverse(posicion) {
+
+	}
+
+}
+
+object mira inherits Puntero(image = "punteria.png", position = game.at(4, 10)) {
+
+
+	override method setearVisual(lvlDificultad) {
+		game.addVisual(self)
+	}
+
+	override method moverse(posicion) {
+		self.position(posicion)
+	}
+  
+  override method seleccion() {
+  }
 
 }
 
