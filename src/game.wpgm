@@ -1,8 +1,6 @@
 import wollok.game.*
 import caballerosRivales.*
-import velocidad.*
-import punteria.*
-import clasesComunes.*
+
 
 program game {
 	

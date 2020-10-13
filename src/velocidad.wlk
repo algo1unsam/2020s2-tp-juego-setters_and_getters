@@ -1,34 +1,24 @@
 import wollok.game.*
 import clasesComunes.*
 
-
 object velocidad {
 
-	var rival = new Caballero(image = "prueba_1.png", position = game.at(0, 7), esRival = true)
-	var jugador = new Caballero(image = "prueba_2.png", position = game.at(35, 7), esRival = false)
-	var puntero = new Puntero(position = new Position(x = 49, y = 7), image = "flecha.png")
-	
 	method setearVisual(lvlDificultad) {
 		game.addVisual(new Visual(image = "escVel01b.jpg", position = game.at(0, 0)))
 		game.addVisual(jugador)
 		game.addVisual(rival)
-		
-		puntero.setearVisual(lvlDificultad)
+		flecha.setearVisual(lvlDificultad)
 	}
 
 	method tomaVelocidad() {
-		game.onTick(100, "avanzaRival", { rival.avanzar()})
-		game.onTick(100, "avanzaJugador", { jugador.avanzar()})
-		return (puntero.seleccion())
-	}
-
-	method comparoPosiciones() { // /La posicion en X de 'jugador' es la positiva, sino la resta me da (-)
-		return (jugador.position().x() - rival.position().x())
-	}
-
-	method imageColision(unaPosicion) { // /Cuando se alcanza la distancia minima entre ellos, agregamos la imagen de los caballeros
-										//chocando,en ese momento se agrega el mensaje para continuar a la siguiente pantalla
+		game.onTick(100, "avanzaJugador", { jugador.moverse()})
+		game.onTick(100, "avanzaRival", { rival.moverse()})
 		
+		return (flecha.seleccion())
+	}
+
+	method colisionCaballeros(unaPosicion) { 
+									
 		game.addVisual(new Visual(image = "caballeros2.png", position = unaPosicion))
 		game.removeTickEvent("avanzaRival")
 		game.removeTickEvent("avanzaJugador")
@@ -40,29 +30,37 @@ object velocidad {
 
 }
 
-
-
-class Caballero inherits Visual{
-
-	var esRival //clase rival podria heredar caballero y sobre escribir avanazar? (preg si vale la pena)
-
-	method avanzar() {
-		if (velocidad.comparoPosiciones() < 1) {
-			velocidad.imageColision(self.position())
+object jugador inherits Caballero(image = "prueba_1.png", position = game.at(0, 7)){
+	
+	override method moverse(){
+		 if ((game.colliders(self)).size() == 1  ) {
+			velocidad.colisionCaballeros(self.position())
 		} else {
-			if (esRival) {
-				self.position(self.position().right(1))
-			} else {
-				self.position(self.position().left(1))
-			}
-		}
+			self.position(self.movimiento())}
 	}
-
+	
+	override method movimiento(){
+		return self.position().right(1)
+	}
 }
 
-class Puntero inherits Visual {
 
-	method moverse( ) {
+
+object rival inherits Caballero(image = "prueba_2.png", position = game.at(35, 7)){
+	
+	override method movimiento(){
+		return self.position().left(1)
+	}
+	override method moverse(){
+			self.position(self.movimiento())}
+	
+		 
+}
+
+
+object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "flecha.png") {
+
+	override method moverse( ) {
 		if (not (self.position().y() == 22)) {
 			self.position(self.position().up(1))
 		} else {
@@ -70,22 +68,22 @@ class Puntero inherits Visual {
 		}
 	}
 
-	method setearVisual(lvlDificultad) {
+	override method setearVisual(lvlDificultad) {
 		game.addVisual(self)
 		game.onTick(lvlDificultad * 100, "mueveFlecha", { self.moverse()})
 	}
 
-	method seleccion() {
+	override method seleccion() {
 		game.removeTickEvent("mueveFlecha")
 		
 		if (self.position().y() >= 7 && self.position().y() < 17) {
-			game.say(self, "mi velocidad es 100")
+			//game.say(self, "mi velocidad es 100")
 			return 100
 		} else if (self.position().y() >= 17 && self.position().y() < 22) {
-			game.say(self, "mi velocidad es 200")
+			//game.say(self, "mi velocidad es 200")
 			return 200
 		} else {
-			game.say(self, "mi velocidad es 400")
+			//game.say(self, "mi velocidad es 400")
 			return 400
 		}
 	}
