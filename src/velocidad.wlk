@@ -4,12 +4,12 @@ import clasesComunes.*
 
 object velocidad {
 
-	var rival = new Caballero(image = "prueba_1.png", position = game.at(0, 7), esRival = true)
-	var jugador = new Caballero(image = "prueba_2.png", position = game.at(35, 7), esRival = false)
-	var puntero = new Puntero(position = new Position(x = 49, y = 7), image = "flecha.png")
+	var rival = new Caballero(image = "caballero_rojo.png", position = game.at(0, 2), esRival = true)
+	var jugador = new Caballero(image = "caballero_azul.png", position = game.at(30, 7), esRival = false)
+	var puntero = new Puntero(position = new Position(x = 49, y = 7), image = "flecha_velocidad.png")
 	
 	method setearVisual(lvlDificultad) {
-		game.addVisual(new Visual(image = "escVel01b.jpg", position = game.at(0, 0)))
+		game.addVisual(new Visual(image = "background_1.png", position = game.at(0, 0)))
 		game.addVisual(jugador)
 		game.addVisual(rival)
 		
