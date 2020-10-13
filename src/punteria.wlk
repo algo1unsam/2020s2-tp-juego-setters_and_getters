@@ -3,7 +3,7 @@ import clasesComunes.*
 import caballerosRivales.*
 
 object punteria {
-
+//	comentario
 	var property image = "background_2.png"
 	const property position = game.at(0, 0)
 
