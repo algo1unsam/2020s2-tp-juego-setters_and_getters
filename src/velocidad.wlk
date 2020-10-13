@@ -11,17 +11,18 @@ object velocidad {
 	}
 
 	method tomaVelocidad() {
-		game.onTick(100, "avanzaJugador", { jugador.moverse()})
-		game.onTick(100, "avanzaRival", { rival.moverse()})
 		
+		game.onTick(100, "avanzaRival", { rival.moverse()})
+		game.onTick(100, "avanzaJugador", { jugador.moverse()})
 		return (flecha.seleccion())
 	}
 
 	method colisionCaballeros(unaPosicion) { 
 									
 		game.addVisual(new Visual(image = "caballeros2.png", position = unaPosicion))
-		game.removeTickEvent("avanzaRival")
 		game.removeTickEvent("avanzaJugador")
+		game.removeTickEvent("avanzaRival")
+		
 		game.removeVisual(rival)
 		game.removeVisual(jugador)
 		game.addVisual(new Visual(image = "mensajePrueba.png", position = new Position(x = 15, y =0)))
@@ -60,7 +61,7 @@ object rival inherits Caballero(image = "prueba_2.png", position = game.at(35, 7
 
 object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "flecha.png") {
 
-	override method moverse( ) {
+	override method moverse(posicion ) {
 		if (not (self.position().y() == 22)) {
 			self.position(self.position().up(1))
 		} else {
@@ -70,7 +71,7 @@ object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "
 
 	override method setearVisual(lvlDificultad) {
 		game.addVisual(self)
-		game.onTick(lvlDificultad * 100, "mueveFlecha", { self.moverse()})
+		game.onTick(lvlDificultad * 100, "mueveFlecha", { self.moverse(0)})
 	}
 
 	override method seleccion() {

@@ -17,6 +17,6 @@ class Caballero inherits Visual{
 class Puntero inherits Visual{
 	method seleccion()
 	method setearVisual(lvlDificultad)
-	method moverse()
+	method moverse(posicion)
 
 }

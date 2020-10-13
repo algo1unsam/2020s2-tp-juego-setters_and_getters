@@ -19,11 +19,18 @@ object caballerosRivales {
 		game.boardGround("titulo0.jpg")
 	}
 	method seteoTeclas(){
+		//Importante: consultar a los profesores si se puede quitar comportamiento a las teclas
+		//despues de cierto tiempo porque pueden dar error pro ejemplo
+		//si se quiere comenzar de nuevo cuando ya se esta jugando,o si se apreta velocidad
+		//luego de haber comenzado el juego
+		
 		keyboard.num1().onPressDo{ self.comienzo(1) }
 		keyboard.num2().onPressDo{ self.comienzo(2 * 0.25) }
 		keyboard.num3().onPressDo{ self.comienzo(3 * 0.1) }
 		keyboard.space().onPressDo{ self.seleccionVelocidad() }
-		keyboard.enter().onPressDo{ self.mecanicaPunteria() }
+		keyboard.enter().onPressDo{ self.seleccionPunteria() }
+		//keyboard.up().onPressDo{ mira.miraUp()}
+		//keyboard.down().onPressDo{ mira.miraDown()}
 	}
 	method comienzo(lvlDificultad){
 			
@@ -34,9 +41,9 @@ object caballerosRivales {
 		velocidadAdquirida = velocidad.tomaVelocidad()
 		
 	}
-	method mecanicaPunteria(){
+	method seleccionPunteria(){
 		game.clear()
-		punteria.enfrentados()
+		punteria.enfrentados(dificultad)
 		
 		
 	}
