@@ -4,7 +4,7 @@ import clasesComunes.*
 object velocidad {
 
 	method setearVisual(lvlDificultad) {
-		game.addVisual(new Visual(image = "escVel01b.jpg", position = game.at(0, 0)))
+		game.addVisual(new Visual(image = "background_1.png", position = game.at(0, 0)))
 		game.addVisual(jugador)
 		game.addVisual(rival)
 		flecha.setearVisual(lvlDificultad)
@@ -31,7 +31,7 @@ object velocidad {
 
 }
 
-object jugador inherits Caballero(image = "prueba_1.png", position = game.at(0, 7)){
+object jugador inherits Caballero(image = "caballero_azul.png", position = game.at(30, 7)){
 	
 	override method moverse(){
 		 if ((game.colliders(self)).size() == 1  ) {
@@ -47,19 +47,20 @@ object jugador inherits Caballero(image = "prueba_1.png", position = game.at(0, 
 
 
 
-object rival inherits Caballero(image = "prueba_2.png", position = game.at(35, 7)){
+object rival inherits Caballero(image = "caballero_rojo.png", position = game.at(0, 2)){
 	
 	override method movimiento(){
 		return self.position().left(1)
 	}
 	override method moverse(){
-			self.position(self.movimiento())}
+			self.position(self.movimiento())
+  }
 	
 		 
 }
 
 
-object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "flecha.png") {
+object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "flecha_velocidad.png") {
 
 	override method moverse(posicion ) {
 		if (not (self.position().y() == 22)) {
