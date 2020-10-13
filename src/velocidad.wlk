@@ -41,7 +41,7 @@ object jugador inherits Caballero(image = "caballero_azul.png", position = game.
 	}
 	
 	override method movimiento(){
-		return self.position().right(1)
+		return self.position().left(1)
 	}
 }
 
@@ -50,7 +50,7 @@ object jugador inherits Caballero(image = "caballero_azul.png", position = game.
 object rival inherits Caballero(image = "caballero_rojo.png", position = game.at(0, 2)){
 	
 	override method movimiento(){
-		return self.position().left(1)
+		return self.position().right(1)
 	}
 	override method moverse(){
 			self.position(self.movimiento())
