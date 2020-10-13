@@ -4,6 +4,7 @@ import caballerosRivales.*
 
 program game {
 	
+	
 	caballerosRivales.seteoTablero()
 	caballerosRivales.seteoTeclas()
 	
