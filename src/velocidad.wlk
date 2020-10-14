@@ -7,6 +7,7 @@ object velocidad {
 		game.addVisual(new Visual(image = "background_1.png", position = game.at(0, 0)))
 		game.addVisual(jugador)
 		game.addVisual(rival)
+		//game.addVisual(sombra)
 		flecha.setearVisual(lvlDificultad)
 	}
 
@@ -34,14 +35,20 @@ object velocidad {
 object jugador inherits Caballero(image = "caballero_azul.png", position = game.at(30, 7)){
 	
 	override method moverse(){
-		 if ((game.colliders(self)).size() == 1  ) {
+		 if (self.hayColision() ) {
+		 	
 			velocidad.colisionCaballeros(self.position())
 		} else {
+			
 			self.position(self.movimiento())}
 	}
 	
 	override method movimiento(){
 		return self.position().left(1)
+	}
+	
+	method hayColision(){
+		return  self.position().x()-1 == rival.position().x()
 	}
 }
 
@@ -50,9 +57,11 @@ object jugador inherits Caballero(image = "caballero_azul.png", position = game.
 object rival inherits Caballero(image = "caballero_rojo.png", position = game.at(0, 2)){
 	
 	override method movimiento(){
+		
 		return self.position().right(1)
 	}
 	override method moverse(){
+			
 			self.position(self.movimiento())
   }
 	
@@ -91,4 +100,8 @@ object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "
 	}
 
 }
+
+
+
+
 
