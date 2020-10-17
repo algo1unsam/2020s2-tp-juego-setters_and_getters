@@ -4,6 +4,7 @@ import punteria.*
 import movimiento.*
 
 object caballerosRivales {
+	var property etapa = 1
 	var punteriaAdquirida
 	var velocidadAdquirida
 	var property dificultad //obs: guardamos la dificultad porque se utiliza luego
@@ -35,20 +36,26 @@ object caballerosRivales {
 		keyboard.right().onPressDo{ right.ir()}
 	}
 	method comienzo(lvlDificultad){
-			
+		if (self.etapa()==1) {
 		dificultad = lvlDificultad
 		velocidad.setearVisual(lvlDificultad)
+		self.etapa(2)
+		}
 	}
 	method seleccionVelocidad(){
+		if (self.etapa()==2) {
 		velocidadAdquirida = velocidad.tomaVelocidad()
-		
+		self.etapa(3)
+		}				
 	}
 	method seleccionPunteria(){
-		//game.clear()
-		punteria.enfrentados(dificultad)
-		
+
+		if (self.etapa()==3) {
+			//game.clear()
+			punteria.enfrentados(dificultad)
+		}
+
 	}
-	
 	
 	
 }
