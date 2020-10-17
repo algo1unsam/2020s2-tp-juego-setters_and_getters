@@ -1,15 +1,16 @@
 import wollok.game.*
 import clasesComunes.*
 import caballerosRivales.*
-
+import movimiento.*
 object punteria inherits Visual(image = "background_2.png", position = game.at(0, 0)) {
 
 	method enfrentados(lvlDificultad) {
 		game.addVisual(self)
 		game.addVisual(rivalFrente)
 		puntero.setearVisual(lvlDificultad)
-		game.addVisualCharacter(lanza)
-		game.addVisualCharacter(mira)
+		mira.setearVisual(lvlDificultad)
+		lanza.setearVisual(lvlDificultad)
+		//game.addVisualCharacter(prueba)
 		
 	}
 
@@ -40,20 +41,24 @@ object puntero inherits Puntero(image = "diana1.png", position = game.at(5, 15))
 
 }
 
-object mira inherits Puntero(image = "punteria.png", position = game.at(4, 10)) {
+object mira inherits Puntero(image = "punteria.png", position = game.at(29, 18)) {
 
 	override method setearVisual(lvlDificultad) {
 		game.addVisual(self)
 	}
 
 	override method moverse(posicion) {
+		//game.say(self,"me estoy moviendo")
 		self.position(posicion)
+		
 	}
 
 	override method seleccion() {
 	}
 
 }
+
+
 
 object lanza inherits Puntero(image = "lanza.png", position = mira.position().down(9).right(1)) {
 
@@ -62,11 +67,13 @@ object lanza inherits Puntero(image = "lanza.png", position = mira.position().do
 	}
 
 	override method moverse(posicion) {
-		self.position(posicion)
+		self.position(mira.position().down(9).right(1))
 	}
 
-	override method seleccion() {
-	}
+	override method seleccion() {}
 
 }
 
+object prueba inherits Visual(image = "prueba.png", position = game.at(0,0)){
+	
+}

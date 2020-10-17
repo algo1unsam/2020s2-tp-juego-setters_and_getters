@@ -102,6 +102,3 @@ object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "
 }
 
 
-
-
-

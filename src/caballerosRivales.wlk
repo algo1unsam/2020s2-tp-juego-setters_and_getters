@@ -1,7 +1,7 @@
 import wollok.game.*
 import velocidad.*
 import punteria.*
-
+import movimiento.*
 
 object caballerosRivales {
 	var property etapa = 1
@@ -30,8 +30,10 @@ object caballerosRivales {
 		keyboard.num3().onPressDo{ self.comienzo(3 * 0.1) }
 		keyboard.space().onPressDo{ self.seleccionVelocidad() }
 		keyboard.enter().onPressDo{ self.seleccionPunteria() }
-		//keyboard.up().onPressDo{ mira.miraUp()}
-		//keyboard.down().onPressDo{ mira.miraDown()}
+		keyboard.up().onPressDo{ up.ir()}
+		keyboard.down().onPressDo{ down.ir()}
+		keyboard.left().onPressDo{ left.ir()}
+		keyboard.right().onPressDo{ right.ir()}
 	}
 	method comienzo(lvlDificultad){
 		if (self.etapa()==1) {
@@ -47,10 +49,12 @@ object caballerosRivales {
 		}				
 	}
 	method seleccionPunteria(){
+
 		if (self.etapa()==3) {
 			//game.clear()
 			punteria.enfrentados(dificultad)
 		}
+
 	}
 	
 	
