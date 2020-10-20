@@ -26,9 +26,9 @@ object caballerosRivales {
 		//si se quiere comenzar de nuevo cuando ya se esta jugando,o si se apreta velocidad
 		//luego de haber comenzado el juego
 		
-		keyboard.num1().onPressDo{ self.comienzo(nivelUno.velocidadSegunNivel()) }
-		keyboard.num2().onPressDo{ self.comienzo(nivelDos.velocidadSegunNivel()) }
-		keyboard.num3().onPressDo{ self.comienzo(nivelTres.velocidadSegunNivel()) }
+		keyboard.num1().onPressDo{ self.comienzo(nivelUno) }
+		keyboard.num2().onPressDo{ self.comienzo(nivelDos) }
+		keyboard.num3().onPressDo{ self.comienzo(nivelTres) }
 		keyboard.space().onPressDo{ self.seleccionVelocidad() }
 		keyboard.enter().onPressDo{ self.seleccionPunteria() }
 		keyboard.up().onPressDo{ up.ir()}
@@ -37,9 +37,10 @@ object caballerosRivales {
 		keyboard.right().onPressDo{ right.ir()}
 	}
 	method comienzo(lvlDificultad){
+		
 		if (self.etapa()==1) {
 		dificultad = lvlDificultad
-		velocidad.setearVisual(lvlDificultad)
+		velocidad.setearVisual(lvlDificultad.velocidadSegunNivel())
 		self.etapa(2)
 		}
 	}
