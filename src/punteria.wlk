@@ -19,7 +19,7 @@ object punteria inherits Visual(image = "background_2.png", position = game.at(0
 
 object rivalFrente inherits Caballero(image = "caballero_rojo_frente.png", position = game.at(20, 9)) {
 
-	// const movimientos 
+
 	override method moverse() {
 	}
 
@@ -29,7 +29,7 @@ object rivalFrente inherits Caballero(image = "caballero_rojo_frente.png", posit
 }
 
 object puntero inherits Puntero(image = "diana1.png", position = game.at(5, 15)) {
-
+	 var posiciones = []
 	override method seleccion() {
 	}
 
@@ -49,7 +49,7 @@ object mira inherits Puntero(image = "punteria.png", position = game.at(29, 18))
 	}
 
 	override method moverse(posicion) {
-		//game.say(self,"me estoy moviendo")
+		
 		self.position(posicion)
 		
 	}
