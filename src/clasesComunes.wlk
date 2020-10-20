@@ -8,6 +8,7 @@ class Visual {
 
 class Caballero inherits Visual{
 	
+	
 	method moverse() 
 	method movimiento()
 

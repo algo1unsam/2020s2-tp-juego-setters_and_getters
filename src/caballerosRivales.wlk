@@ -6,8 +6,8 @@ import clasesComunes.*
 
 object caballerosRivales {
 	var property etapa = 1
-	var punteriaAdquirida
-	var velocidadAdquirida
+	var property punteriaAdquirida
+	var property velocidadAdquirida
 	var property dificultad //obs: guardamos la dificultad porque se utiliza luego
 					//en la segunda pantalla cuando hay que apuntar
 					//pero como esta implementado no se guarda 1 , 2 o 3
