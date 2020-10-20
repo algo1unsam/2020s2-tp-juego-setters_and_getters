@@ -2,6 +2,7 @@ import wollok.game.*
 import clasesComunes.*
 import caballerosRivales.*
 import movimiento.*
+
 object punteria inherits Visual(image = "background_2.png", position = game.at(0, 0)) {
 
 	method enfrentados(lvlDificultad) {
