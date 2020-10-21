@@ -3,16 +3,16 @@ import clasesComunes.*
 import caballerosRivales.*
 
 object resultado  {
-	/*
-	var nivel = dificultad.nivel()
-	var velocidadEnemiga = dificultad.velocidadEnemiga(nivel)
-	var punteriaEnemiga = dificultad.punteriaEnemiga(nivel)
 	
-	var velocidadAdquirida = caballerosRivales.velocidadAdquirida()
-	var punteriaAdquirida = caballerosRivales.punteriaAdquirida()
+	const nivel = caballerosRivales.dificultad().nivel()
+	var velocidadEnemiga = caballerosRivales.dificultad().velocidadEnemiga(nivel)
+	var punteriaEnemiga = caballerosRivales.dificultad().punteriaEnemiga(nivel)
 	
-	var ganeVelocidad = self.calcularVelocidad()
-	var ganePunteria = self.calcularPunteria()
+	const velocidadAdquirida = caballerosRivales.velocidadAdquirida()
+	const punteriaAdquirida = caballerosRivales.punteriaAdquirida()
+	
+	const ganeVelocidad = self.calcularVelocidad()
+	const ganePunteria = self.calcularPunteria()
 	var gane = false
 	
 	method setearVisual() {
@@ -24,7 +24,7 @@ object resultado  {
 			gane = ganeVelocidad and ganePunteria
 		}
 		
-		if (gane == true) {
+		if (gane) {
 			game.addVisual(new Visual(image = "victoria.png", position = game.at(0, 0)))
 		}
 		else{
@@ -34,6 +34,6 @@ object resultado  {
 	}
 	
 	method calcularVelocidad() = velocidadAdquirida > velocidadEnemiga
-	method calcularPunteria() = velocidadAdquirida > velocidadEnemiga
-	*/
+	method calcularPunteria() = punteriaAdquirida > punteriaEnemiga
+	
 }

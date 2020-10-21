@@ -6,7 +6,7 @@ import clasesComunes.*
 
 object caballerosRivales {
 	var property etapa = 1
-	var property punteriaAdquirida
+	var property punteriaAdquirida = 0
 	var property velocidadAdquirida
 	var property dificultad //obs: guardamos la dificultad porque se utiliza luego
 					//en la segunda pantalla cuando hay que apuntar
@@ -27,6 +27,7 @@ object caballerosRivales {
 		//luego de haber comenzado el juego
 		
 		keyboard.num1().onPressDo{ self.comienzo(nivelUno) }
+		keyboard.num1().onPressDo{ etapa.apretaronLaTecla1(nivelUno) }
 		keyboard.num2().onPressDo{ self.comienzo(nivelDos) }
 		keyboard.num3().onPressDo{ self.comienzo(nivelTres) }
 		keyboard.space().onPressDo{ self.seleccionVelocidad() }
@@ -52,12 +53,15 @@ object caballerosRivales {
 	}
 	method seleccionPunteria(){
 
-		if (self.etapa()==3) {
+		if (self.etapa()==3 and jugador.hayColision()) {
 			//game.clear()
 			punteria.enfrentados(dificultad)
 		}
 
 	}
+	
+	//velocidad.setearVisual(lvlDificultad.velocidadSegunNivel())
+	//method apretaronLaTecla1(nivel) { }
 	
 	
 }
