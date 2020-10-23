@@ -27,7 +27,7 @@ object caballerosRivales {
 		//luego de haber comenzado el juego
 		
 		keyboard.num1().onPressDo{ self.comienzo(nivelUno) }
-		keyboard.num1().onPressDo{ etapa.apretaronLaTecla1(nivelUno) }
+		keyboard.num1().onPressDo{ self.comienzo(nivelUno) }
 		keyboard.num2().onPressDo{ self.comienzo(nivelDos) }
 		keyboard.num3().onPressDo{ self.comienzo(nivelTres) }
 		keyboard.space().onPressDo{ self.seleccionVelocidad() }
