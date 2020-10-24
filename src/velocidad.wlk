@@ -3,7 +3,7 @@ import clasesComunes.*
 import caballerosRivales.*
 
 object velocidad {
-
+	var hayOnTick = 0
 	method teclaNum(nivel){
 		
 	}
@@ -16,10 +16,11 @@ object velocidad {
 	}
 
 	method tomaVelocidad() {
-		
-		game.onTick(100, "avanzaRival", { rival.moverse()})
-		game.onTick(100, "avanzaJugador", { jugador.moverse()})
-		return (flecha.seleccion())
+	
+			game.onTick(100, "avanzaRival", { rival.moverse()})
+			game.onTick(100, "avanzaJugador", { jugador.moverse()})
+			return (flecha.seleccion())
+
 	}
 
 	method colisionCaballeros(unaPosicion) { 
@@ -34,8 +35,12 @@ object velocidad {
 	}
 	
 	method teclaEspaciadora(){
-		caballerosRivales.velocidadAdquirida(self.tomaVelocidad())
+		if(hayOnTick == 0){
+			caballerosRivales.velocidadAdquirida(self.tomaVelocidad())
+			hayOnTick = 1
+		}	
 	}
+	
 	method teclaEnter(){
 		if(jugador.hayColision()){
 			caballerosRivales.seleccionPunteria()
