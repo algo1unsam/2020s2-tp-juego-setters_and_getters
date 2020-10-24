@@ -33,7 +33,7 @@ object caballerosRivales {
 		keyboard.num2().onPressDo{ etapa.teclaNum(nivelDos) }
 		keyboard.num3().onPressDo{ etapa.teclaNum(nivelTres) }
 		keyboard.space().onPressDo{ etapa.teclaEspaciadora() }
-		keyboard.enter().onPressDo{ self.seleccionPunteria() }
+		keyboard.enter().onPressDo{ etapa.teclaEnter() }
 		keyboard.up().onPressDo{ up.ir()}
 		keyboard.down().onPressDo{ down.ir()}
 		keyboard.left().onPressDo{ left.ir()}
@@ -50,12 +50,7 @@ object caballerosRivales {
 		
 	}
 	method seleccionPunteria(){
-
-		if (self.etapa()==3 and jugador.hayColision()) {
-			//game.clear()
-			punteria.enfrentados(dificultad)
-		}
-
+		punteria.enfrentados(dificultad)
 	}
 	
 	//velocidad.setearVisual(lvlDificultad.velocidadSegunNivel())

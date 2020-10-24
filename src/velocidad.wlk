@@ -36,6 +36,12 @@ object velocidad {
 	method teclaEspaciadora(){
 		caballerosRivales.velocidadAdquirida(self.tomaVelocidad())
 	}
+	method teclaEnter(){
+		if(jugador.hayColision()){
+			caballerosRivales.seleccionPunteria()
+		}
+		
+	}
 
 
 }
