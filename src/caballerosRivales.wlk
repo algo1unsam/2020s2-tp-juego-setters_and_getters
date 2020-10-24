@@ -30,6 +30,7 @@ object caballerosRivales {
 		//si se quiere comenzar de nuevo cuando ya se esta jugando,o si se apreta velocidad
 		//luego de haber comenzado el juego
 		
+
 		keyboard.num1().onPressDo{ etapa.teclaNum(nivelUno) }
 		keyboard.num2().onPressDo{ etapa.teclaNum(nivelDos) }
 		keyboard.num3().onPressDo{ etapa.teclaNum(nivelTres) }
