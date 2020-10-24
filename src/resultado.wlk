@@ -5,16 +5,24 @@ import niveles.*
 
 object resultado  {
 	
-	const nivel = caballerosRivales.dificultad().nivel()
-	var velocidadEnemiga = caballerosRivales.dificultad().velocidadEnemiga()
-	var punteriaEnemiga = caballerosRivales.dificultad().punteriaEnemiga()
+	var nivel 
+	const velocidadEnemiga = caballerosRivales.dificultad().velocidadEnemiga()
+	const punteriaEnemiga = caballerosRivales.dificultad().punteriaEnemiga()
+	var velocidadAdquirida
+	var punteriaAdquirida 
 	
-	const velocidadAdquirida = caballerosRivales.velocidadAdquirida()
-	const punteriaAdquirida = caballerosRivales.punteriaAdquirida()
+	var ganeVelocidad 
+	var ganePunteria 
+	var gane 
 	
-	const ganeVelocidad = self.calcularVelocidad()
-	const ganePunteria = self.calcularPunteria()
-	var gane = false
+	method setearValores(){
+		 nivel = caballerosRivales.dificultad()
+		 velocidadAdquirida = caballerosRivales.velocidadAdquirida()
+		 punteriaAdquirida = caballerosRivales.punteriaAdquirida()
+		 ganeVelocidad = self.calcularVelocidad()
+		 ganePunteria = self.calcularPunteria()
+		 gane = false
+	}
 	
 	method setearVisual() {
 		

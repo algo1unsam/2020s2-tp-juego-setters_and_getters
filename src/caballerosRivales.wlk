@@ -49,6 +49,7 @@ object caballerosRivales {
 	}
 
 	method seleccionPunteria(){
+		etapa = punteria
 		punteria.enfrentados(dificultad)
 	}
 	
