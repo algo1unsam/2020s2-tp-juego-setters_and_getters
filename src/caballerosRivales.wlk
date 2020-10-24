@@ -5,11 +5,10 @@ import movimiento.*
 import clasesComunes.*
 import portada.*
 import niveles.*
+import personajes.*
 
 object caballerosRivales {
 	var  etapa = portada
-	var property punteriaAdquirida = 0
-	var property velocidadAdquirida
 	var property dificultad //obs: guardamos la dificultad porque se utiliza luego
 					//en la segunda pantalla cuando hay que apuntar
 					//pero como esta implementado no se guarda 1 , 2 o 3

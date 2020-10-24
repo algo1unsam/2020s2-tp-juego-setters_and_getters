@@ -16,8 +16,6 @@ object nivelUno inherits Dificultad(nivel = 1) {
 
 object nivelDos inherits Dificultad(nivel = 2) {
 
-
-
 	override method velocidadSegunNivel() {
 		return self.nivel() * 0.25
 	}

@@ -2,12 +2,13 @@ import wollok.game.*
 import clasesComunes.*
 import caballerosRivales.*
 import niveles.*
+import personajes.*
 
 object resultado  {
 	
 	var nivel 
-	const velocidadEnemiga = caballerosRivales.dificultad().velocidadEnemiga()
-	const punteriaEnemiga = caballerosRivales.dificultad().punteriaEnemiga()
+	const velocidadEnemiga =rival.vel()
+	const punteriaEnemiga = rival.punteria()
 	var velocidadAdquirida
 	var punteriaAdquirida 
 	
@@ -21,8 +22,8 @@ object resultado  {
 	
 	method setearValores(){
 		 nivel = caballerosRivales.dificultad()
-		 velocidadAdquirida = caballerosRivales.velocidadAdquirida()
-		 punteriaAdquirida = caballerosRivales.punteriaAdquirida()
+		 velocidadAdquirida = jugador.vel()
+		 punteriaAdquirida = jugador.punteria()
 		 resulVelocidad = self.calcularVelocidad()
 		 resulPunteria = self.calcularPunteria()
 

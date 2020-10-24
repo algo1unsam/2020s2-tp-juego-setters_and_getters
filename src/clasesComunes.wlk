@@ -1,6 +1,6 @@
 import velocidad.*
 import wollok.game.*
-
+import personajes.*
 class Visual {
 	var property image
 	var property position
@@ -8,6 +8,8 @@ class Visual {
 
 class Caballero inherits Visual{
 	
+	var property vel
+	var property punteria
 	
 	method moverse() 
 	method movimiento()
@@ -31,6 +33,10 @@ class Dificultad {
 	}
 	 method punteriaEnemiga(){
 		return nivel * 100
+	}
+	method seteaRival(){
+		rival.vel(nivel.velocidadSegunNivel())
+		rival.punteria(nivel.punteriaEnemiga())
 	}
 	
 		
