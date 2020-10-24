@@ -9,7 +9,7 @@ object portada {
 		caballerosRivales.dificultad(lvlDificultad) 
 	}
 	
-	
+	method teclaEspaciadora(){}
 	
 	
 }

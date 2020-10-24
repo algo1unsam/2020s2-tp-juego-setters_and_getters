@@ -8,7 +8,7 @@ import portada.*
 object caballerosRivales {
 	var property etapa = portada
 	var property punteriaAdquirida = 0
-	var property velocidadAdquirida
+	var  velocidadAdquirida
 	var property dificultad //obs: guardamos la dificultad porque se utiliza luego
 					//en la segunda pantalla cuando hay que apuntar
 					//pero como esta implementado no se guarda 1 , 2 o 3
@@ -32,7 +32,7 @@ object caballerosRivales {
 		keyboard.num1().onPressDo{ etapa.teclaNum(nivelUno) }
 		keyboard.num2().onPressDo{ etapa.teclaNum(nivelDos) }
 		keyboard.num3().onPressDo{ etapa.teclaNum(nivelTres) }
-		keyboard.space().onPressDo{ self.seleccionVelocidad() }
+		keyboard.space().onPressDo{ etapa.teclaEspaciadora() }
 		keyboard.enter().onPressDo{ self.seleccionPunteria() }
 		keyboard.up().onPressDo{ up.ir()}
 		keyboard.down().onPressDo{ down.ir()}
@@ -41,14 +41,13 @@ object caballerosRivales {
 	}
 
 	method setDificultad(lvlDificultad){
+		dificultad = lvlDificultad
 		etapa = velocidad
 		velocidad.setearVisual(lvlDificultad.velocidadSegunNivel())
 	}
-	method seleccionVelocidad(){
-		if (self.etapa()==2) {
-		velocidadAdquirida = velocidad.tomaVelocidad()
-		self.etapa(3)
-		}				
+	method velocidadAdquirida(velocidad){
+		velocidadAdquirida = velocidad
+		
 	}
 	method seleccionPunteria(){
 

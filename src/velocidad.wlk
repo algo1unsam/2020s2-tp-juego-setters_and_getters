@@ -1,5 +1,6 @@
 import wollok.game.*
 import clasesComunes.*
+import caballerosRivales.*
 
 object velocidad {
 
@@ -32,6 +33,10 @@ object velocidad {
 		game.addVisual(new Visual(image = "mensajePrueba.png", position = new Position(x = 15, y =0)))
 	}
 	
+	method teclaEspaciadora(){
+		caballerosRivales.velocidadAdquirida(self.tomaVelocidad())
+	}
+
 
 }
 
