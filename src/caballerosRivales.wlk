@@ -3,9 +3,10 @@ import velocidad.*
 import punteria.*
 import movimiento.*
 import clasesComunes.*
+import portada.*
 
 object caballerosRivales {
-	var property etapa = 1
+	var property etapa = portada
 	var property punteriaAdquirida = 0
 	var property velocidadAdquirida
 	var property dificultad //obs: guardamos la dificultad porque se utiliza luego
@@ -26,10 +27,9 @@ object caballerosRivales {
 		//si se quiere comenzar de nuevo cuando ya se esta jugando,o si se apreta velocidad
 		//luego de haber comenzado el juego
 		
-		keyboard.num1().onPressDo{ self.comienzo(nivelUno) }
-		keyboard.num1().onPressDo{ etapa.apretaronLaTecla1(nivelUno) }
-		keyboard.num2().onPressDo{ self.comienzo(nivelDos) }
-		keyboard.num3().onPressDo{ self.comienzo(nivelTres) }
+		keyboard.num1().onPressDo{ etapa.tecla1(nivelUno) }
+		keyboard.num2().onPressDo{ etapa.comienzo(nivelDos) }
+		keyboard.num3().onPressDo{ etapa.comienzo(nivelTres) }
 		keyboard.space().onPressDo{ self.seleccionVelocidad() }
 		keyboard.enter().onPressDo{ self.seleccionPunteria() }
 		keyboard.up().onPressDo{ up.ir()}
@@ -37,14 +37,8 @@ object caballerosRivales {
 		keyboard.left().onPressDo{ left.ir()}
 		keyboard.right().onPressDo{ right.ir()}
 	}
-	method comienzo(lvlDificultad){
-		
-		if (self.etapa()==1) {
-		dificultad = lvlDificultad
-		velocidad.setearVisual(lvlDificultad.velocidadSegunNivel())
-		self.etapa(2)
-		}
-	}
+
+
 	method seleccionVelocidad(){
 		if (self.etapa()==2) {
 		velocidadAdquirida = velocidad.tomaVelocidad()
