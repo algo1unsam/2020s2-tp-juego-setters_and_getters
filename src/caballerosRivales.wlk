@@ -6,7 +6,7 @@ import clasesComunes.*
 import portada.*
 
 object caballerosRivales {
-	var property etapa = portada
+	var  etapa = portada
 	var property punteriaAdquirida = 0
 	var property velocidadAdquirida
 	var property dificultad //obs: guardamos la dificultad porque se utiliza luego

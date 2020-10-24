@@ -5,8 +5,8 @@ import caballerosRivales.*
 object resultado  {
 	
 	const nivel = caballerosRivales.dificultad().nivel()
-	var velocidadEnemiga = caballerosRivales.dificultad().velocidadEnemiga(nivel)
-	var punteriaEnemiga = caballerosRivales.dificultad().punteriaEnemiga(nivel)
+	var velocidadEnemiga = caballerosRivales.dificultad().velocidadEnemiga()
+	var punteriaEnemiga = caballerosRivales.dificultad().punteriaEnemiga()
 	
 	const velocidadAdquirida = caballerosRivales.velocidadAdquirida()
 	const punteriaAdquirida = caballerosRivales.punteriaAdquirida()
