@@ -11,40 +11,31 @@ object resultado  {
 	var velocidadAdquirida
 	var punteriaAdquirida 
 	
-	var ganeVelocidad 
-	var ganePunteria 
-	///var gane 
+	var resulVelocidad 
+	var resulPunteria 
+	
+	method muestraResultado(){
+		self.setearValores()
+		self.setearVisual()
+	}
 	
 	method setearValores(){
 		 nivel = caballerosRivales.dificultad()
 		 velocidadAdquirida = caballerosRivales.velocidadAdquirida()
 		 punteriaAdquirida = caballerosRivales.punteriaAdquirida()
-		 ganeVelocidad = self.calcularVelocidad()
-		 ganePunteria = self.calcularPunteria()
-		 self.pasoResultados()
-		 ///gane = false
+		 resulVelocidad = self.calcularVelocidad()
+		 resulPunteria = self.calcularPunteria()
+
 	}
-	
-	method pasoResultados(){
-		nivel.setearVisual(ganeVelocidad,ganePunteria)
-	}
-	/*method setearVisual() {
-		
-		if (nivel == 1 or nivel == 2){
-			gane = ganeVelocidad or ganePunteria
-		}
-		else{
-			gane = ganeVelocidad and ganePunteria
-		}
-		
-		if (gane) {
+	method setearVisual() {
+		if (nivel.consultaVictoria(resulVelocidad, resulPunteria)) {
 			game.addVisual(new Visual(image = "victoria.png", position = game.at(0, 0)))
 		}
 		else{
 			game.addVisual(new Visual(image = "derrota.png", position = game.at(0, 0)))
 		}
 
-	}*/
+	}
 	
 	method calcularVelocidad() = velocidadAdquirida > velocidadEnemiga
 	method calcularPunteria() = punteriaAdquirida > punteriaEnemiga
