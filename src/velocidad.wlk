@@ -3,6 +3,9 @@ import clasesComunes.*
 
 object velocidad {
 
+	method teclaNum(nivel){
+		
+	}
 	method setearVisual(lvlDificultad) {
 		game.addVisual(new Visual(image = "background_1.png", position = game.at(0, 0)))
 		game.addVisual(jugador)

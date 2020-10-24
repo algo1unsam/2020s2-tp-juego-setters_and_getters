@@ -4,14 +4,12 @@ import caballerosRivales.*
 
 object portada {
 	
-	method comienzo(lvlDificultad){
+	method teclaNum(lvlDificultad){
 	
 		caballerosRivales.dificultad(lvlDificultad) 
-		//velocidad.setearVisual(lvlDificultad.velocidadSegunNivel())
-		
 	}
-	method tecla1(){
-		self.comienzo(1)
-	}
+	
+	
+	
 	
 }

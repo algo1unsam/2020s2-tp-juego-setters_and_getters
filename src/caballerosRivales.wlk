@@ -14,6 +14,7 @@ object caballerosRivales {
 					//pero como esta implementado no se guarda 1 , 2 o 3
 					//sino que se guarda 1,0.5,0.3
 
+
 	method seteoTablero(){
 		game.title("Caballeros Rivales")
 		game.height(30)
@@ -21,15 +22,16 @@ object caballerosRivales {
 		game.cellSize(20)
 		game.boardGround("titulo0.jpg")
 	}
+
 	method seteoTeclas(){
 		//Importante: consultar a los profesores si se puede quitar comportamiento a las teclas
 		//despues de cierto tiempo porque pueden dar error pro ejemplo
 		//si se quiere comenzar de nuevo cuando ya se esta jugando,o si se apreta velocidad
 		//luego de haber comenzado el juego
 		
-		keyboard.num1().onPressDo{ etapa.tecla1(nivelUno) }
-		keyboard.num2().onPressDo{ etapa.comienzo(nivelDos) }
-		keyboard.num3().onPressDo{ etapa.comienzo(nivelTres) }
+		keyboard.num1().onPressDo{ etapa.teclaNum(nivelUno) }
+		keyboard.num2().onPressDo{ etapa.teclaNum(nivelDos) }
+		keyboard.num3().onPressDo{ etapa.teclaNum(nivelTres) }
 		keyboard.space().onPressDo{ self.seleccionVelocidad() }
 		keyboard.enter().onPressDo{ self.seleccionPunteria() }
 		keyboard.up().onPressDo{ up.ir()}
@@ -38,7 +40,10 @@ object caballerosRivales {
 		keyboard.right().onPressDo{ right.ir()}
 	}
 
-
+	method setDificultad(lvlDificultad){
+		etapa = velocidad
+		velocidad.setearVisual(lvlDificultad.velocidadSegunNivel())
+	}
 	method seleccionVelocidad(){
 		if (self.etapa()==2) {
 		velocidadAdquirida = velocidad.tomaVelocidad()
