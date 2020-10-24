@@ -6,6 +6,7 @@ import clasesComunes.*
 import portada.*
 import niveles.*
 import personajes.*
+import resultado.*
 
 object caballerosRivales {
 	var  etapa = portada
@@ -42,7 +43,9 @@ object caballerosRivales {
 	}
 
 	method setDificultad(lvlDificultad){
+
 		dificultad = lvlDificultad
+		dificultad.seteaRival()
 		etapa = velocidad
 		velocidad.setearVisual(lvlDificultad.velocidadSegunNivel())
 	}
@@ -50,6 +53,11 @@ object caballerosRivales {
 	method seleccionPunteria(){
 		etapa = punteria
 		punteria.enfrentados(dificultad)
+	}
+	
+	method seleccionResultado(){
+		etapa = resultado
+		resultado.muestraResultado()
 	}
 	
 	//velocidad.setearVisual(lvlDificultad.velocidadSegunNivel())
