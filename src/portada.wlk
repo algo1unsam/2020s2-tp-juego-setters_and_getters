@@ -11,5 +11,5 @@ object portada {
 	
 	method teclaEspaciadora(){}
 	
-	
+	method teclaEnter(){}
 }

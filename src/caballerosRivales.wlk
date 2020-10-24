@@ -8,7 +8,7 @@ import portada.*
 object caballerosRivales {
 	var property etapa = portada
 	var property punteriaAdquirida = 0
-	var  velocidadAdquirida
+	var property velocidadAdquirida
 	var property dificultad //obs: guardamos la dificultad porque se utiliza luego
 					//en la segunda pantalla cuando hay que apuntar
 					//pero como esta implementado no se guarda 1 , 2 o 3
@@ -45,10 +45,7 @@ object caballerosRivales {
 		etapa = velocidad
 		velocidad.setearVisual(lvlDificultad.velocidadSegunNivel())
 	}
-	method velocidadAdquirida(velocidad){
-		velocidadAdquirida = velocidad
-		
-	}
+
 	method seleccionPunteria(){
 		punteria.enfrentados(dificultad)
 	}
