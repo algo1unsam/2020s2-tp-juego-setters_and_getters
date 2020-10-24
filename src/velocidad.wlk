@@ -1,8 +1,12 @@
 import wollok.game.*
 import clasesComunes.*
+import caballerosRivales.*
 
 object velocidad {
-
+	var hayOnTick = 0
+	method teclaNum(nivel){
+		
+	}
 	method setearVisual(lvlDificultad) {
 		game.addVisual(new Visual(image = "background_1.png", position = game.at(0, 0)))
 		game.addVisual(jugador)
@@ -12,10 +16,11 @@ object velocidad {
 	}
 
 	method tomaVelocidad() {
-		
-		game.onTick(100, "avanzaRival", { rival.moverse()})
-		game.onTick(100, "avanzaJugador", { jugador.moverse()})
-		return (flecha.seleccion())
+	
+			game.onTick(100, "avanzaRival", { rival.moverse()})
+			game.onTick(100, "avanzaJugador", { jugador.moverse()})
+			return (flecha.seleccion())
+
 	}
 
 	method colisionCaballeros(unaPosicion) { 
@@ -29,6 +34,20 @@ object velocidad {
 		game.addVisual(new Visual(image = "mensajePrueba.png", position = new Position(x = 15, y =0)))
 	}
 	
+	method teclaEspaciadora(){
+		if(hayOnTick == 0){
+			caballerosRivales.velocidadAdquirida(self.tomaVelocidad())
+			hayOnTick = 1
+		}	
+	}
+	
+	method teclaEnter(){
+		if(jugador.hayColision()){
+			caballerosRivales.seleccionPunteria()
+		}
+		
+	}
+
 
 }
 
