@@ -1,6 +1,7 @@
 import wollok.game.*
 import clasesComunes.*
 import caballerosRivales.*
+import niveles.*
 
 object resultado  {
 	

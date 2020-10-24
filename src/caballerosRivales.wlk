@@ -4,6 +4,7 @@ import punteria.*
 import movimiento.*
 import clasesComunes.*
 import portada.*
+import niveles.*
 
 object caballerosRivales {
 	var  etapa = portada
@@ -56,25 +57,3 @@ object caballerosRivales {
 	
 }
 
-object nivelUno inherits Dificultad(nivel = 1){
-	
-	override method velocidadSegunNivel(){
-		return self.nivel()
-	}
-
-	
-}
-
-object nivelDos inherits Dificultad(nivel = 2){
-	
-	override method velocidadSegunNivel(){
-		return self.nivel() * 0.25
-	}
-}
-
-object nivelTres inherits Dificultad(nivel = 3){
-	
-	override method velocidadSegunNivel(){
-		return self.nivel() * 0.1
-	}
-}
