@@ -14,7 +14,9 @@ object punteria inherits Visual(image = "background_2.png", position = game.at(0
 		//game.addVisualCharacter(prueba)
 		
 	}
-
+	method teclaNum(nivel){}
+	method teclaEspaciadora(){}
+	method teclaEnter(){}
 }
 
 object rivalFrente inherits Caballero(image = "caballero_rojo_frente.png", position = game.at(20, 9)) {
