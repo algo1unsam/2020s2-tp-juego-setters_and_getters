@@ -13,7 +13,7 @@ object resultado  {
 	
 	var ganeVelocidad 
 	var ganePunteria 
-	var gane 
+	///var gane 
 	
 	method setearValores(){
 		 nivel = caballerosRivales.dificultad()
@@ -21,10 +21,14 @@ object resultado  {
 		 punteriaAdquirida = caballerosRivales.punteriaAdquirida()
 		 ganeVelocidad = self.calcularVelocidad()
 		 ganePunteria = self.calcularPunteria()
-		 gane = false
+		 self.pasoResultados()
+		 ///gane = false
 	}
 	
-	method setearVisual() {
+	method pasoResultados(){
+		nivel.setearVisual(ganeVelocidad,ganePunteria)
+	}
+	/*method setearVisual() {
 		
 		if (nivel == 1 or nivel == 2){
 			gane = ganeVelocidad or ganePunteria
@@ -40,7 +44,7 @@ object resultado  {
 			game.addVisual(new Visual(image = "derrota.png", position = game.at(0, 0)))
 		}
 
-	}
+	}*/
 	
 	method calcularVelocidad() = velocidadAdquirida > velocidadEnemiga
 	method calcularPunteria() = punteriaAdquirida > punteriaEnemiga
