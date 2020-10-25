@@ -1,14 +1,37 @@
-import velocidad.*
 import wollok.game.*
 import personajes.*
-import caballerosRivales.*
+import resultado.*
+
 class Visual {
+
 	var property image
 	var property position
+
+	method setearVisual() {
+		game.addVisual(self)
+	}
+
 }
 
-class Caballero inherits Visual{
+class Etapa inherits Visual {
+
+	method teclaNum(nivel){}
+
+	method teclaEspaciadora(){}
+
+	method teclaEnter(){}
 	
+	method teclaArriba(){}
+
+	method teclaAbajo(){}
+	
+	method teclaIzquierda(){}
+	
+	method teclaDerecha(){}
+
+}
+
+class Caballero inherits Visual {
 	var property vel = 0
 	var property punteria = 0
 	
@@ -20,31 +43,37 @@ class Caballero inherits Visual{
 	method decirConstantemente(){
 		game.onTick(100, "decirConstante", { => self.decimePuntaje() })
 	}
-
 }
 
+class Puntero inherits Visual {
 
-class Puntero inherits Visual{
 	method seleccion()
-	method setearVisual(lvlDificultad)
-	method moverse(posicion)
+
+	method moverse(posicion) {
+		self.position(posicion)
+	}
 
 }
+
 class Dificultad {
-	var nivel //= caballerosRivales.dificultad()
+
+	var nivel
+
 	method nivel() = nivel
+
 	method velocidadSegunNivel()
-	
- 	method velocidadEnemiga(){
+
+	method velocidadEnemiga() {
 		return nivel * 100
 	}
-	 method punteriaEnemiga(){
+
+	method punteriaEnemiga() {
 		return nivel * 100
 	}
+
 	method seteaRival(){
 		rival.vel(self.velocidadSegunNivel())
 		rival.punteria(self.punteriaEnemiga())
 	}
-	
-		
 }
+
