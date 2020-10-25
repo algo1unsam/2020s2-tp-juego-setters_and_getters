@@ -5,11 +5,11 @@ import movimiento.*
 import clasesComunes.*
 import portada.*
 import niveles.*
+import personajes.*
+import resultado.*
 
 object caballerosRivales {
 	var  etapa = portada
-	var property punteriaAdquirida = 0
-	var property velocidadAdquirida
 	var property dificultad //obs: guardamos la dificultad porque se utiliza luego
 					//en la segunda pantalla cuando hay que apuntar
 					//pero como esta implementado no se guarda 1 , 2 o 3
@@ -43,13 +43,21 @@ object caballerosRivales {
 	}
 
 	method setDificultad(lvlDificultad){
+
 		dificultad = lvlDificultad
+		dificultad.seteaRival()
 		etapa = velocidad
 		velocidad.setearVisual(lvlDificultad.velocidadSegunNivel())
 	}
 
 	method seleccionPunteria(){
+		etapa = punteria
 		punteria.enfrentados(dificultad)
+	}
+	
+	method seleccionResultado(){
+		etapa = resultado
+		resultado.muestraResultado()
 	}
 	
 	//velocidad.setearVisual(lvlDificultad.velocidadSegunNivel())

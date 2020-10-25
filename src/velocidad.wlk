@@ -1,9 +1,11 @@
 import wollok.game.*
 import clasesComunes.*
 import caballerosRivales.*
+import personajes.*
 
 object velocidad {
 	var hayOnTick = 0
+	
 	method teclaNum(nivel){
 		
 	}
@@ -36,7 +38,8 @@ object velocidad {
 	
 	method teclaEspaciadora(){
 		if(hayOnTick == 0){
-			caballerosRivales.velocidadAdquirida(self.tomaVelocidad())
+			jugador.vel(self.tomaVelocidad())
+		
 			hayOnTick = 1
 		}	
 	}
@@ -51,41 +54,6 @@ object velocidad {
 
 }
 
-object jugador inherits Caballero(image = "caballero_azul.png", position = game.at(30, 7)){
-	
-	override method moverse(){
-		 if (self.hayColision() ) {
-		 	
-			velocidad.colisionCaballeros(self.position())
-		} else {
-			
-			self.position(self.movimiento())}
-	}
-	
-	override method movimiento(){
-		return self.position().left(1)
-	}
-	
-	method hayColision(){
-		return  self.position().x()-1 == rival.position().x()
-	}
-}
-
-
-
-object rival inherits Caballero(image = "caballero_rojo.png", position = game.at(0, 2)){
-	
-	override method movimiento(){
-		
-		return self.position().right(1)
-	}
-	override method moverse(){
-			
-			self.position(self.movimiento())
-  }
-	
-		 
-}
 
 
 object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "flecha_velocidad.png") {
@@ -107,13 +75,10 @@ object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "
 		game.removeTickEvent("mueveFlecha")
 		
 		if (self.position().y() >= 7 && self.position().y() < 17) {
-			//game.say(self, "mi velocidad es 100")
 			return 100
 		} else if (self.position().y() >= 17 && self.position().y() < 22) {
-			//game.say(self, "mi velocidad es 200")
 			return 200
 		} else {
-			//game.say(self, "mi velocidad es 400")
 			return 400
 		}
 	}
