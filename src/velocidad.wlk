@@ -1,6 +1,7 @@
 import wollok.game.*
 import clasesComunes.*
 import caballerosRivales.*
+import personajes.*
 import punteria.*
 
 object velocidad inherits Etapa(image = "background_1.png", position = game.at(0, 0)) {
@@ -16,7 +17,7 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 
 	override method teclaEspaciadora() {
 		if (hayOnTick == 0) {
-			self.tomaVelocidad()
+			jugador.vel(self.tomaVelocidad())
 			hayOnTick = 1
 		}	
 	}
@@ -40,11 +41,12 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 		game.removeTickEvent("avanzaRival")
 		game.removeVisual(rival)
 		game.removeVisual(jugador)
-		game.addVisual(new Visual(image = "mensajePrueba.png", position = new Position(x = 15, y = 0)))
+		game.addVisual(new Visual(image = "mensajePrueba.png", position = new Position(x = 15, y =0)))
 	}
 
 }
 
+/* Esto esta en personajes.*
 object jugador inherits Caballero(image = "caballero_azul.png", position = game.at(30, 7)) {
 
 	override method moverse() {
@@ -66,6 +68,7 @@ object rival inherits Caballero(image = "caballero_rojo.png", position = game.at
 	override method moverse() {
 		self.position(self.position().right(1))
 	}
+ */
 
 }
 
@@ -73,7 +76,7 @@ object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "
 
 	override method setearVisual() {
 		game.addVisual(self)
-		game.onTick(caballerosRivales.dificultad().nivel() * 100, "mueveFlecha", { self.moverse(0)})
+		game.onTick(caballerosRivales.dificultad().nivel() * 100, "mueveFlecha", { self.moverse(0) })
 	}
 
 	override method moverse(posicion) {
@@ -93,5 +96,3 @@ object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "
 	}
 
 }
-
-

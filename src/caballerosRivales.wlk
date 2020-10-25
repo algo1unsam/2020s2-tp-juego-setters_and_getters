@@ -5,6 +5,8 @@ import portada.*
 import velocidad.*
 import punteria.*
 import movimiento.*
+import personajes.*
+import resultado.*
 
 object caballerosRivales {
 
@@ -19,9 +21,6 @@ object caballerosRivales {
 	var property etapa = portada
 //	En la etapa 'portada' se elige la dificultad del juego, este valor se guarda en var 'dificultad'
 	var property dificultad
-//	
-	var property punteriaAdquirida = 0
-	var property velocidadAdquirida
 
 	method seteoTablero() {
 		game.title("Caballeros Rivales")
@@ -54,5 +53,6 @@ object caballerosRivales {
 		etapa.setearVisual()
 	}
 
+	// Agregar a portada: dificultad.seteaRival()
 }
 

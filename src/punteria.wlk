@@ -13,6 +13,11 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		lanza.setearVisual()
 		self.enfrentados(caballerosRivales.dificultad())
 	}
+  
+  override method teclaEnter(){
+			caballerosRivales.siguienteEtapa(resultado)
+      // En resultado hacer: resultado.setearVisual() lo que haga en resultado.muestraResultado()
+	}
 
 	// max superior derecho -> fila:43 | columna:30
 	// max superior izq -> fila:13 | columna:30
