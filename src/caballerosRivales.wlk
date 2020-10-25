@@ -53,6 +53,5 @@ object caballerosRivales {
 		etapa.setearVisual()
 	}
 
-	// Agregar a portada: dificultad.seteaRival()
 }
 

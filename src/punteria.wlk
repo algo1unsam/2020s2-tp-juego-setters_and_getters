@@ -2,6 +2,7 @@ import wollok.game.*
 import clasesComunes.*
 import caballerosRivales.*
 import movimiento.*
+import resultado.*
 
 object punteria inherits Etapa(image = "background_2.png", position = game.at(0, 0)) {
 
@@ -13,10 +14,9 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		lanza.setearVisual()
 		self.enfrentados(caballerosRivales.dificultad())
 	}
-  
-  override method teclaEnter(){
-			caballerosRivales.siguienteEtapa(resultado)
-      // En resultado hacer: resultado.setearVisual() lo que haga en resultado.muestraResultado()
+
+	override method teclaEnter() {
+		caballerosRivales.siguienteEtapa(resultado)
 	}
 
 	// max superior derecho -> fila:43 | columna:30
@@ -47,10 +47,10 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 //			mira.moverse(mira.position().right(1))
 //		}
 //	}
-
 	method enfrentados(dificultad) {
-		diana.agregarPosiciones(dificultad.nivel())
-		game.onTick(dificultad.velocidadSegunNivel() * 500, "mueveDiana", { diana.moverse(diana.posiciones().anyOne()) })
+		//diana.agregarPosiciones(dificultad.nivel())
+		//game.onTick(dificultad.velocidadSegunNivel() * 500, "mueveDiana", { diana.moverse(diana.posiciones().anyOne())})
+		game.onTick(dificultad.velocidadSegunNivel() * 1000, "mueveDiana", { diana.moverse(new Position(x = diana.nuevaPosicionX(), y = diana.nuevaPosicionY()))})
 	}
 
 }
@@ -58,6 +58,9 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 object rivalFrente inherits Caballero(image = "caballero_rojo_frente.png", position = game.at(20, 9)) {
 
 	override method moverse() {
+	}
+	
+	override method movimiento() {
 	}
 
 }
@@ -67,16 +70,15 @@ object diana inherits Puntero(image = "diana.png", position = game.at(29, 17)) {
 	var property posiciones = []
 
 	method agregarPosiciones(nivel) {
-		(nivel*2).times({ i => self.posiciones().add(new Position(x = self.nuevaPosicionX(), y = self.nuevaPosicionY()))})
-//		(1..nivel).forEach({ i => self.posiciones().add(new Position(x = self.nuevaPosicionX(), y = self.nuevaPosicionY())) })
+		(nivel * 5).times({ i => self.posiciones().add(new Position(x = self.nuevaPosicionX(), y = self.nuevaPosicionY()))})
 	}
 
 	method nuevaPosicionX() {
-		return 24.randomUpTo(32).truncate(0)
+		return 26.randomUpTo(30).truncate(0)
 	}
 
 	method nuevaPosicionY() {
-		return 14.randomUpTo(30).truncate(0)
+		return 16.randomUpTo(26).truncate(0)
 	}
 
 	override method seleccion() {

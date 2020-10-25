@@ -9,7 +9,6 @@ object nivelUno inherits Dificultad(nivel = 1) {
 
 	method consultaVictoria(resulVelocidad, resulPunteria) {
 		return resulVelocidad or resulPunteria
-
 	}
 
 }
@@ -21,9 +20,7 @@ object nivelDos inherits Dificultad(nivel = 2) {
 	}
 
 	method consultaVictoria(resulVelocidad, resulPunteria) {
-		return  resulVelocidad or resulPunteria
-		
-		
+		return resulVelocidad or resulPunteria
 	}
 
 }

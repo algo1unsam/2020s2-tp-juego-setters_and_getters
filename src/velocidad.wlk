@@ -17,7 +17,7 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 
 	override method teclaEspaciadora() {
 		if (hayOnTick == 0) {
-			jugador.vel(self.tomaVelocidad())
+			self.tomaVelocidad()
 			hayOnTick = 1
 		}	
 	}
@@ -29,10 +29,10 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 	}
 
 	method tomaVelocidad() {
-		game.onTick(100, "avanzaRival", { rival.moverse()})
-		game.onTick(100, "avanzaJugador", { jugador.moverse()})
+		game.onTick(100, "avanzaRival", { rival.moverse() })
+		game.onTick(100, "avanzaJugador", { jugador.moverse() })
 		game.removeTickEvent("mueveFlecha")
-		caballerosRivales.velocidadAdquirida(flecha.seleccion())
+		jugador.velocidadAdquirida(flecha.seleccion())
 	}
 
 	method colisionCaballeros(unaPosicion) {
@@ -68,9 +68,8 @@ object rival inherits Caballero(image = "caballero_rojo.png", position = game.at
 	override method moverse() {
 		self.position(self.position().right(1))
 	}
- */
-
 }
+*/
 
 object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "flecha_velocidad.png") {
 
