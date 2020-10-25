@@ -11,7 +11,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		diana.setearVisual()
 		mira.setearVisual()
 		lanza.setearVisual()
-		self.enfrentados(caballerosRivales.dificultad().nivel())
+		self.enfrentados(caballerosRivales.dificultad())
 	}
 
 	// max superior derecho -> fila:43 | columna:30
@@ -43,10 +43,9 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 //		}
 //	}
 
-	method enfrentados(nivel) {
-		diana.agregarPosiciones(nivel)
-//		game.schedule(nivel * 1000, {=> diana.posiciones().forEach({ posicion => diana.moverse(posicion)})})
-		game.onTick(nivel * 1000, "mueveDiana", { diana.posiciones().forEach({ posicion => diana.moverse(posicion) }) })
+	method enfrentados(dificultad) {
+		diana.agregarPosiciones(dificultad.nivel())
+		game.onTick(dificultad.velocidadSegunNivel() * 500, "mueveDiana", { diana.moverse(diana.posiciones().anyOne()) })
 	}
 
 }
@@ -63,16 +62,16 @@ object diana inherits Puntero(image = "diana.png", position = game.at(29, 17)) {
 	var property posiciones = []
 
 	method agregarPosiciones(nivel) {
-		nivel.times({ i => self.posiciones().add(new Position(x = self.nuevaPosicionX(), y = self.nuevaPosicionY()))})
+		(nivel*2).times({ i => self.posiciones().add(new Position(x = self.nuevaPosicionX(), y = self.nuevaPosicionY()))})
 //		(1..nivel).forEach({ i => self.posiciones().add(new Position(x = self.nuevaPosicionX(), y = self.nuevaPosicionY())) })
 	}
 
 	method nuevaPosicionX() {
-		return 28.randomUpTo(34)
+		return 24.randomUpTo(32).truncate(0)
 	}
 
 	method nuevaPosicionY() {
-		return 16.randomUpTo(22)
+		return 14.randomUpTo(30).truncate(0)
 	}
 
 	override method seleccion() {
