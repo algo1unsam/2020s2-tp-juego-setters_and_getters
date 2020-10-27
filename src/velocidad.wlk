@@ -75,7 +75,7 @@ object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "
 
 	override method setearVisual() {
 		game.addVisual(self)
-		game.onTick(caballerosRivales.dificultad().nivel() * 100, "mueveFlecha", { self.moverse(0) })
+		game.onTick(caballerosRivales.dificultad().velocidadSegunNivel() * 100, "mueveFlecha", { self.moverse(0) })
 	}
 
 	override method moverse(posicion) {
