@@ -75,5 +75,9 @@ class Dificultad {
 		rival.velocidadAdquirida(self.velocidadEnemiga())
 		rival.punteriaAdquirida(self.punteriaEnemiga())
 	}
+	
+	method consultaVictoria(resulVelocidad, resulPunteria) {
+		return resulVelocidad or resulPunteria
+	}
 }
 
