@@ -11,6 +11,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		diana.setearVisual()
 		mira.setearVisual()
 		lanza.setearVisual()
+		tiempo.setearVisual()
 		self.enfrentados(caballerosRivales.dificultad())
 	}
 
@@ -64,11 +65,9 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 
 object rivalFrente inherits Caballero(image = "caballero_rojo_frente.png", position = game.at(20, 9)) {
 
-	override method moverse() {
-	}
+	override method moverse() {}
 	
-	override method movimiento() {
-	}
+	override method movimiento() {}
 
 }
 
@@ -111,5 +110,15 @@ object lanza inherits Puntero(image = "lanza.png", position = mira.position().do
 	override method seleccion() {
 	}
 
+}
+
+object tiempo inherits Puntero(image = "primeraprueba.png", position = game.at(25,15) ){
+	
+	method seleccion(){}
+
+	method moverse(posicion) {
+		//cambia de imagen
+	}
+	
 }
 
