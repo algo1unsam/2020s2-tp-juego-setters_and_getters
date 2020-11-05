@@ -1,7 +1,6 @@
 import wollok.game.*
 import clasesComunes.*
 import caballerosRivales.*
-import movimiento.*
 import resultado.*
 
 object punteria inherits Etapa(image = "background_2.png", position = game.at(0, 0)) {
@@ -23,30 +22,38 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 	// max superior izq -> fila:13 | columna:30
 	// max inf izq -> fila:13 | columna:0
 	// max inf der -> fila:43 | columna:0
-//	override method teclaArriba() {
-//		mira.moverse(mira.position().up(1))
-//		if (mira.position().y() < 28) {
-//			mira.moverse(mira.position().up(1))
-//		}
-//	}
-//
-//	override method teclaAbajo() {
-//		if (mira.position().y() > 9) {
-//			mira.moverse(mira.position().down(1))
-//		}
-//	}
-//
-//	override method teclaIzquierda() {
-//		if (mira.position().x() > 14) {
-//			mira.moverse(mira.position().left(1))
-//		}
-//	}
-//
-//	override method teclaDerecha() {
-//		if (mira.position().x() < 34) {
-//			mira.moverse(mira.position().right(1))
-//		}
-//	}
+	
+	
+	override method teclaArriba() {
+		
+			if (mira.position().y() < 28) {
+				mira.moverse(mira.position().up(1))
+				lanza.moverse(lanza.position().up(1))
+		}
+	}
+
+	override method teclaAbajo() {
+		if (mira.position().y() > 9) {
+			mira.moverse(mira.position().down(1))
+			lanza.moverse(lanza.position().down(1))
+		}
+	}
+
+	override method teclaIzquierda() {
+		if (mira.position().x() > 14) {
+			mira.moverse(mira.position().left(1))
+			lanza.moverse(lanza.position().left(1))
+		}
+	}
+
+	override method teclaDerecha() {
+		if (mira.position().x() < 34) {
+			mira.moverse(mira.position().right(1))
+			lanza.moverse(lanza.position().right(1))
+		}
+	}
+	
+	
 	method enfrentados(dificultad) {
 		//diana.agregarPosiciones(dificultad.nivel())
 		//game.onTick(dificultad.velocidadSegunNivel() * 500, "mueveDiana", { diana.moverse(diana.posiciones().anyOne())})
@@ -89,8 +96,8 @@ object diana inherits Puntero(image = "diana.png", position = game.at(29, 17)) {
 object mira inherits Puntero(image = "mira.png", position = game.at(29, 18)) {
 
 	override method moverse(posicion) {
-		self.moverse(posicion)
-		lanza.moverse(posicion)
+		self.position(posicion)
+		
 	}
 
 	override method seleccion() {
@@ -98,7 +105,7 @@ object mira inherits Puntero(image = "mira.png", position = game.at(29, 18)) {
 
 }
 
-// Tengo dudas si arreglarlo asi esta bien?
+
 object lanza inherits Puntero(image = "lanza.png", position = mira.position().down(9).right(1)) {
 
 	override method seleccion() {

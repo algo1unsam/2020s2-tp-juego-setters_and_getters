@@ -1,7 +1,7 @@
 import wollok.game.*
 import velocidad.*
 import punteria.*
-import movimiento.*
+
 import clasesComunes.*
 import portada.*
 import niveles.*
