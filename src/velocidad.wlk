@@ -36,7 +36,9 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 	}
 
 	method colisionCaballeros(unaPosicion) {
-		game.addVisual(new Visual(image = "caballeros2.png", position = unaPosicion))
+		
+		game.addVisual(new Visual(image = "colix.png", position = new Position(x = 9 , y = 0)))
+		//game.addVisual(new Visual(image = "caballeros2.png", position = unaPosicion))
 		game.removeTickEvent("avanzaJugador")
 		game.removeTickEvent("avanzaRival")
 		game.removeVisual(rival)

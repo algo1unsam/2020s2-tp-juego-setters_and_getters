@@ -20,8 +20,14 @@ object jugador inherits Caballero(image = "caballero_azul.png", position = game.
 		return self.position().left(1)
 	}
 
-	method hayColision() {
+	/*Colision vieja
+	 * method hayColision() {
 		return self.position().x() - 1 == rival.position().x()
+	}
+	 
+	 */
+	method hayColision() {
+		return self.position().x() == 16
 	}
 
 }
