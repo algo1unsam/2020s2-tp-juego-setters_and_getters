@@ -9,17 +9,17 @@ object resultado inherits Etapa(image = "background_1.png", position = game.at(0
 
 	override method setearVisual() {
 		game.addVisual(self)
-		jugador.position(game.at(20, 7))
+		jugador.position(game.at(23, 7))
 		game.addVisualCharacter(jugador)
-		rival.position(game.at(4, 7))
+		rival.position(game.at(6, 7))
 		game.addVisualCharacter(rival)
 		jugador.decirConstantemente()
 		rival.decirConstantemente()
 		if (caballerosRivales.dificultad().consultaVictoria(self.ganoEnVelocidad(), self.ganoEnPunteria())) {
-//			Luego cambiar imagenes a Win y Lose
-			game.addVisual(new Visual(image = "mira.png", position = game.at(15, 7)))
+//			
+			game.addVisual(new Visual(image = "victoria.png", position = game.at(12, 18)))
 		} else {
-			game.addVisual(new Visual(image = "diana.png", position = game.at(15, 7)))
+			game.addVisual(new Visual(image = "derrota.png", position = game.at(12, 18)))
 		}
 	}
 
