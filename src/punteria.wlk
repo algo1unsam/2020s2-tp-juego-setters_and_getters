@@ -61,6 +61,10 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		game.onTick(dificultad.velocidadSegunNivel() * 1000, "mueveDiana", { diana.moverse(new Position(x = diana.nuevaPosicionX(), y = diana.nuevaPosicionY()))})
 	}
 	
+	//se acabo el tiempo o la mira choco con la punteria, se llama a este metodo
+	method capturarPunteria(tiempo){
+		
+	}
 
 }
 
@@ -123,15 +127,18 @@ object tiempo inherits Puntero(image = "tiempo_5.png", position = game.at(43,20)
 			self.image("tiempo_"+tiempo.toString()+".png")
 		}else{
 			self.image("tiempo_0.png")
+			self.terminoTiempo(tiempo)
 		
 		}
 		
 	}
-	method terminoTiempo(){
-				game.say(self,"TERMINO TIEMPO")
+	method terminoTiempo(tiempop){
 				game.removeTickEvent("corre tiempo")
+				
 		
 	}
+	
+	method darTiempo() = tiempo
 	
 }
 
