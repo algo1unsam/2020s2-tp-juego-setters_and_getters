@@ -2,7 +2,7 @@ import wollok.game.*
 import clasesComunes.*
 import caballerosRivales.*
 import resultado.*
-
+import personajes.*
 object punteria inherits Etapa(image = "background_2.png", position = game.at(0, 0)) {
 
 	override method setearVisual() {
@@ -12,7 +12,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		mira.setearVisual()
 		lanza.setearVisual()
 		tiempo.setearVisual()
-		game.onTick(3000, "corre tiempo", {tiempo.moverse(game.at(0, 0))} )
+		game.onTick(3000, "corre tiempo", { tiempo.moverse(game.at(0, 0))})
 		self.enfrentados(caballerosRivales.dificultad())
 	}
 
@@ -24,13 +24,10 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 	// max superior izq -> fila:13 | columna:30
 	// max inf izq -> fila:13 | columna:0
 	// max inf der -> fila:43 | columna:0
-	
-	
 	override method teclaArriba() {
-		
-			if (mira.position().y() < 28) {
-				mira.moverse(mira.position().up(1))
-				lanza.moverse(lanza.position().up(1))
+		if (mira.position().y() < 28) {
+			mira.moverse(mira.position().up(1))
+			lanza.moverse(lanza.position().up(1))
 		}
 	}
 
@@ -54,15 +51,26 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 			lanza.moverse(lanza.position().right(1))
 		}
 	}
-	
-	
+
 	method enfrentados(dificultad) {
-		
 		game.onTick(dificultad.velocidadSegunNivel() * 1000, "mueveDiana", { diana.moverse(new Position(x = diana.nuevaPosicionX(), y = diana.nuevaPosicionY()))})
 	}
-	
-	//se acabo el tiempo o la mira choco con la punteria, se llama a este metodo
-	method capturarPunteria(tiempo){
+
+	// se acabo el tiempo o la mira choco con la punteria, se llama a este metodo
+	// si tiempo es 0 , quiere decir que no alcanzo la mira a tiempo, no debe recibir ningun punto
+	method capturarPunteria(time) {
+		tiempo.terminoTiempo() // remuevo el ontick
+		game.removeTickEvent("mueveDiana")
+		
+		//decidir aca que puntaje se otorga segun el tiempo para probar voy a dejar 500 si tiempo no es 0
+		if (time > 0){
+			jugador.punteriaAdquirida(500)
+			game.say(tiempo,"PUNTERIA 500")
+			
+		}else{
+			jugador.punteriaAdquirida(0)
+			game.say(tiempo,"PUNTERIA 0")
+		}
 		
 	}
 
@@ -70,9 +78,11 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 
 object rivalFrente inherits Caballero(image = "caballero_rojo_frente.png", position = game.at(20, 9)) {
 
-	override method moverse() {}
-	
-	override method movimiento() {}
+	override method moverse() {
+	}
+
+	override method movimiento() {
+	}
 
 }
 
@@ -101,15 +111,18 @@ object mira inherits Puntero(image = "mira.png", position = game.at(29, 18)) {
 
 	override method moverse(posicion) {
 		self.position(posicion)
-		
-		
+		self.seleccion()
 	}
 
 	override method seleccion() {
+		if (self.position() == diana.position() ) {
+			// hay colision con la mira, llamamos a la punteria y le pasamos el tiempo
+			// para determinar la cantidad de puntos que obtiene
+			punteria.capturarPunteria(tiempo.darTiempo())
+		}
 	}
 
 }
-
 
 object lanza inherits Puntero(image = "lanza.png", position = mira.position().down(9).right(1)) {
 
@@ -118,28 +131,29 @@ object lanza inherits Puntero(image = "lanza.png", position = mira.position().do
 
 }
 
-object tiempo inherits Puntero(image = "tiempo_5.png", position = game.at(43,20) ){
+object tiempo inherits Puntero(image = "tiempo_5.png", position = game.at(43, 20)) {
+
 	var tiempo = 5
-	override method seleccion(){}
+
+	override method seleccion() {
+	}
 
 	override method moverse(posicion) {
-		if(tiempo>1){
-			tiempo-=1
-			self.image("tiempo_"+tiempo.toString()+".png")
-		}else{
+		if (tiempo > 1) {
+			tiempo -= 1
+			self.image("tiempo_" + tiempo.toString() + ".png")
+			
+		} else {
 			self.image("tiempo_0.png")
-			self.terminoTiempo(tiempo)
-		
+			punteria.capturarPunteria(0)
 		}
-		
 	}
-	method terminoTiempo(tiempop){
-				game.removeTickEvent("corre tiempo")
-				
-		
+
+	method terminoTiempo() {
+		game.removeTickEvent("corre tiempo")
 	}
-	
+
 	method darTiempo() = tiempo
-	
+
 }
 
