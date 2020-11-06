@@ -8,6 +8,7 @@ object resultado inherits Etapa(image = "background_1.png", position = game.at(0
 
 
 	override method setearVisual() {
+		game.removeTickEvent("pantalla")
 		game.addVisual(self)
 		jugador.position(game.at(23, 7))
 		game.addVisualCharacter(jugador)

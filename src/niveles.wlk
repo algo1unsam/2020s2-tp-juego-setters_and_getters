@@ -24,7 +24,7 @@ object nivelDos inherits Dificultad(nivel = 2) {
 
 object nivelTres inherits Dificultad(nivel = 3) {
 
-	var gane
+	//var gane
 
 	override method velocidadSegunNivel() {
 		return self.nivel() * 0.1

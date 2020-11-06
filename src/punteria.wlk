@@ -17,7 +17,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 	}
 
 	override method teclaEnter() {
-		caballerosRivales.siguienteEtapa(resultado)
+		
 	}
 
 	// max superior derecho -> fila:43 | columna:30
@@ -63,8 +63,8 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		tiempo.terminoTiempo() // remuevo el ontick
 		game.removeTickEvent("mueveDiana")
 		caballerosRivales.dificultad().adjudicaPunteria(time)
-			
-		//falta ver que pasa con la mira y lanza, hay qeu detener colision
+		game.onTick(5000, "pantalla", {caballerosRivales.siguienteEtapa(resultado)})	
+		//falta ver que pasa con la mira y lanza, hay que detener colision
 		
 	}
 

@@ -38,7 +38,7 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 	method colisionCaballeros(unaPosicion) {
 		
 		game.addVisual(new Visual(image = "colix.png", position = new Position(x = 9 , y = 0)))
-		//game.addVisual(new Visual(image = "caballeros2.png", position = unaPosicion))
+		
 		game.removeTickEvent("avanzaJugador")
 		game.removeTickEvent("avanzaRival")
 		game.removeVisual(rival)
@@ -48,30 +48,7 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 
 }
 
-/* Esto esta en personajes.*
-object jugador inherits Caballero(image = "caballero_azul.png", position = game.at(30, 7)) {
 
-	override method moverse() {
-		if (self.hayColision()) {
-			velocidad.colisionCaballeros(self.position())
-		} else {
-			self.position(self.position().left(1))
-		}
-	}
-
-	method hayColision() {
-		return self.position().x() - 1 == rival.position().x()
-	}
-
-}
-
-object rival inherits Caballero(image = "caballero_rojo.png", position = game.at(0, 2)) {
-
-	override method moverse() {
-		self.position(self.position().right(1))
-	}
-}
-*/
 
 object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "flecha_velocidad.png") {
 
@@ -90,7 +67,7 @@ object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "
 
 	override method seleccion() = if (self.position().y().between(7, 17)) {
 		100
-	} else if (self.position().y().between(17, 22)) {
+	} else if (self.position().y().between(17, 21)) {
 		200
 	} else {
 		400
