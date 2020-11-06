@@ -102,6 +102,7 @@ object mira inherits Puntero(image = "mira.png", position = game.at(29, 18)) {
 	override method moverse(posicion) {
 		self.position(posicion)
 		
+		
 	}
 
 	override method seleccion() {
