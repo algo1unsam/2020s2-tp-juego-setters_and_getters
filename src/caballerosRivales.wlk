@@ -4,7 +4,6 @@ import niveles.*
 import portada.*
 import velocidad.*
 import punteria.*
-import movimiento.*
 import personajes.*
 import resultado.*
 
@@ -18,6 +17,7 @@ object caballerosRivales {
 //	Estas se definieron como instancias de la clase 'Etapa',
 //	teniendo metodos para el seteo de teclas y pantalla segun corresponda
 //	Se inicializa el juego con la etapa 'portada'
+
 	var property etapa = portada
 //	En la etapa 'portada' se elige la dificultad del juego, este valor se guarda en var 'dificultad'
 	var property dificultad
@@ -42,10 +42,7 @@ object caballerosRivales {
 		keyboard.down().onPressDo{ etapa.teclaAbajo() }
 		keyboard.left().onPressDo{ etapa.teclaIzquierda() }
 		keyboard.right().onPressDo{ etapa.teclaDerecha() }
-//		keyboard.up().onPressDo{ up.ir()}
-//		keyboard.down().onPressDo{ down.ir()}
-//		keyboard.left().onPressDo{ left.ir()}
-//		keyboard.right().onPressDo{ right.ir()}
+
 	}
 
 	method siguienteEtapa(nuevaEtapa) {

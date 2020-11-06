@@ -1,7 +1,7 @@
 import wollok.game.*
 import velocidad.*
 import punteria.*
-import movimiento.*
+
 import clasesComunes.*
 import portada.*
 import niveles.*
@@ -20,14 +20,9 @@ object jugador inherits Caballero(image = "caballero_azul.png", position = game.
 		return self.position().left(1)
 	}
 
-	/*Colision vieja
-	 * method hayColision() {
-		return self.position().x() - 1 == rival.position().x()
-	}
-	 
-	 */
+	
 	method hayColision() {
-		return self.position().x() == 16
+		return self.position().x() == 17
 	}
 
 }

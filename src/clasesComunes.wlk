@@ -1,7 +1,7 @@
 import wollok.game.*
 import personajes.*
 import resultado.*
-
+import punteria.*
 class Visual {
 
 	var property image
@@ -78,6 +78,16 @@ class Dificultad {
 	
 	method consultaVictoria(resulVelocidad, resulPunteria) {
 		return resulVelocidad or resulPunteria
+	}
+	
+	 method adjudicaPunteria(time){
+		
+		
+		jugador.punteriaAdquirida(time*100) //al ser nivel 1 , gana todo el puntaje del enemigo
+		
+		
+		game.say(tiempo,(time*100).toString()) 
+		
 	}
 }
 
