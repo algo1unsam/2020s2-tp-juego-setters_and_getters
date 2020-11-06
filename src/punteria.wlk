@@ -12,6 +12,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		mira.setearVisual()
 		lanza.setearVisual()
 		tiempo.setearVisual()
+		game.onTick(3000, "corre tiempo", {tiempo.moverse(game.at(0, 0))} )
 		self.enfrentados(caballerosRivales.dificultad())
 	}
 
@@ -59,6 +60,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		
 		game.onTick(dificultad.velocidadSegunNivel() * 1000, "mueveDiana", { diana.moverse(new Position(x = diana.nuevaPosicionX(), y = diana.nuevaPosicionY()))})
 	}
+	
 
 }
 
@@ -112,11 +114,23 @@ object lanza inherits Puntero(image = "lanza.png", position = mira.position().do
 }
 
 object tiempo inherits Puntero(image = "tiempo_5.png", position = game.at(43,20) ){
-	
+	var tiempo = 5
 	override method seleccion(){}
 
 	override method moverse(posicion) {
-		//cambia de imagen
+		if(tiempo>1){
+			tiempo-=1
+			self.image("tiempo_"+tiempo.toString()+".png")
+		}else{
+			self.image("tiempo_0.png")
+		
+		}
+		
+	}
+	method terminoTiempo(){
+				game.say(self,"TERMINO TIEMPO")
+				game.removeTickEvent("corre tiempo")
+		
 	}
 	
 }
