@@ -56,8 +56,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 	
 	
 	method enfrentados(dificultad) {
-		//diana.agregarPosiciones(dificultad.nivel())
-		//game.onTick(dificultad.velocidadSegunNivel() * 500, "mueveDiana", { diana.moverse(diana.posiciones().anyOne())})
+		
 		game.onTick(dificultad.velocidadSegunNivel() * 1000, "mueveDiana", { diana.moverse(new Position(x = diana.nuevaPosicionX(), y = diana.nuevaPosicionY()))})
 	}
 
@@ -112,11 +111,11 @@ object lanza inherits Puntero(image = "lanza.png", position = mira.position().do
 
 }
 
-object tiempo inherits Puntero(image = "primeraprueba.png", position = game.at(25,15) ){
+object tiempo inherits Puntero(image = "tiempo_5.png", position = game.at(43,20) ){
 	
-	method seleccion(){}
+	override method seleccion(){}
 
-	method moverse(posicion) {
+	override method moverse(posicion) {
 		//cambia de imagen
 	}
 	
