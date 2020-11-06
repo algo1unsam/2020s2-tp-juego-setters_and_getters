@@ -11,9 +11,9 @@ object resultado inherits Etapa(image = "background_1.png", position = game.at(0
 		game.removeTickEvent("pantalla")
 		game.addVisual(self)
 		jugador.position(game.at(23, 7))
-		game.addVisualCharacter(jugador)
+		game.addVisual(jugador)
 		rival.position(game.at(6, 7))
-		game.addVisualCharacter(rival)
+		game.addVisual(rival)
 		jugador.decirConstantemente()
 		rival.decirConstantemente()
 		if (caballerosRivales.dificultad().consultaVictoria(self.ganoEnVelocidad(), self.ganoEnPunteria())) {

@@ -5,6 +5,7 @@ import resultado.*
 import personajes.*
 object punteria inherits Etapa(image = "background_2.png", position = game.at(0, 0)) {
 
+	var finPantalla = 0
 	override method setearVisual() {
 		game.addVisual(self)
 		rivalFrente.setearVisual()
@@ -25,28 +26,28 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 	// max inf izq -> fila:13 | columna:0
 	// max inf der -> fila:43 | columna:0
 	override method teclaArriba() {
-		if (mira.position().y() < 28) {
+		if ((mira.position().y() < 28) &&  (finPantalla == 0)){
 			mira.moverse(mira.position().up(1))
 			lanza.moverse(lanza.position().up(1))
 		}
 	}
 
 	override method teclaAbajo() {
-		if (mira.position().y() > 9) {
+		if ((mira.position().y() > 9) &&  (finPantalla == 0)) {
 			mira.moverse(mira.position().down(1))
 			lanza.moverse(lanza.position().down(1))
 		}
 	}
 
 	override method teclaIzquierda() {
-		if (mira.position().x() > 14) {
+		if ((mira.position().x() > 14) &&  (finPantalla == 0)) {
 			mira.moverse(mira.position().left(1))
 			lanza.moverse(lanza.position().left(1))
 		}
 	}
 
 	override method teclaDerecha() {
-		if (mira.position().x() < 34) {
+		if ((mira.position().x() < 34)&&  (finPantalla == 0)) {
 			mira.moverse(mira.position().right(1))
 			lanza.moverse(lanza.position().right(1))
 		}
@@ -60,6 +61,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 	// se acabo el tiempo o la mira choco con la punteria, se llama a este metodo
 	// si tiempo es 0 , quiere decir que no alcanzo la mira a tiempo, no debe recibir ningun punto
 	method capturarPunteria(time) {
+		finPantalla = 1 
 		tiempo.terminoTiempo() // remuevo el ontick
 		game.removeTickEvent("mueveDiana")
 		caballerosRivales.dificultad().adjudicaPunteria(time)
