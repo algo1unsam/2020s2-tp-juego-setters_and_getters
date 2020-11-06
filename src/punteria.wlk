@@ -56,21 +56,15 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		game.onTick(dificultad.velocidadSegunNivel() * 1000, "mueveDiana", { diana.moverse(new Position(x = diana.nuevaPosicionX(), y = diana.nuevaPosicionY()))})
 	}
 
+
 	// se acabo el tiempo o la mira choco con la punteria, se llama a este metodo
 	// si tiempo es 0 , quiere decir que no alcanzo la mira a tiempo, no debe recibir ningun punto
 	method capturarPunteria(time) {
 		tiempo.terminoTiempo() // remuevo el ontick
 		game.removeTickEvent("mueveDiana")
-		
-		//decidir aca que puntaje se otorga segun el tiempo para probar voy a dejar 500 si tiempo no es 0
-		if (time > 0){
-			jugador.punteriaAdquirida(500)
-			game.say(tiempo,"PUNTERIA 500")
+		caballerosRivales.dificultad().adjudicaPunteria(time)
 			
-		}else{
-			jugador.punteriaAdquirida(0)
-			game.say(tiempo,"PUNTERIA 0")
-		}
+		//falta ver que pasa con la mira y lanza, hay qeu detener colision
 		
 	}
 
