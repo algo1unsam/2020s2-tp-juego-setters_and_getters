@@ -5,7 +5,8 @@ import niveles.*
 import personajes.*
 
 object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at(0, 0)){
-
+	const sonidoVictoria = game.sound("victoria.wav")
+	const sonidoDerrota = game.sound("derrota.wav")
 
 	override method setearVisual() {
 		game.addVisual(self)
@@ -22,8 +23,12 @@ object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at
 		if (caballerosRivales.dificultad().consultaVictoria(self.ganoEnVelocidad(), self.ganoEnPunteria())) {
 //			
 			game.addVisual(new Visual(image = "victoria.png", position = game.at(19, 18)))
+			sonidoVictoria.volume(1)
+			sonidoVictoria.play()
 		} else {
 			game.addVisual(new Visual(image = "derrota.png", position = game.at(19, 18)))
+			sonidoDerrota.volume(1)
+			sonidoDerrota.play()
 		}
 	}
 
