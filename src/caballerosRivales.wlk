@@ -21,13 +21,15 @@ object caballerosRivales {
 	var property etapa = portada
 //	En la etapa 'portada' se elige la dificultad del juego, este valor se guarda en var 'dificultad'
 	var property dificultad
-
+	const sonidoGeneral = game.sound("general.wav")
 	method seteoTablero() {
 		game.title("Caballeros Rivales")
 		game.height(30)
 		game.width(55)
 		game.cellSize(20)
 		etapa.setearVisual()
+		sonidoGeneral.shouldLoop(true)
+		game.schedule(100, {sonidoGeneral.play()})
 	// En la etapa 'portada' se setea el nivel de dificultad
 	}
 
@@ -49,6 +51,10 @@ object caballerosRivales {
 		game.sound("siguiente.wav").play()
 		etapa = nuevaEtapa
 		etapa.setearVisual()
+	}
+	
+	method detenerSonidoGeneral(){
+		sonidoGeneral.stop()
 	}
 
 }

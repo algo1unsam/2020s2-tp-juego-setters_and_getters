@@ -17,6 +17,7 @@ object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at
 		
 		game.schedule(500, {jugadorInvisible.decirConstantemente(jugador.puntaje())})
 		game.schedule(500, {rivalInvisible.decirConstantemente(rival.puntaje())})
+		caballerosRivales.detenerSonidoGeneral()
 
 		if (caballerosRivales.dificultad().consultaVictoria(self.ganoEnVelocidad(), self.ganoEnPunteria())) {		
 			game.addVisual(new Visual(image = "victoria.png", position = game.at(17, 18)))
