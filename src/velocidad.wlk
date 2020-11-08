@@ -7,7 +7,7 @@ import punteria.*
 object velocidad inherits Etapa(image = "background_1.png", position = game.at(0, 0)) {
 
 	var hayOnTick = 0
-
+	const sonidoGalopar = game.sound("galopar.wav")
 	override method setearVisual() {
 		game.addVisual(self)
 		jugador.setearVisual()
@@ -17,6 +17,8 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 
 	override method teclaEspaciadora() {
 		if (hayOnTick == 0) {
+			game.sound("caballo.wav").play()
+			sonidoGalopar.play()
 			self.tomaVelocidad()
 			jugadorInvisible.aparecerEn(48,flecha.position().y()-1)
 			jugadorInvisible.decirConstantemente(flecha.seleccion().toString() + "Km/h")
@@ -41,7 +43,8 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 	}
 
 	method colisionCaballeros(unaPosicion) {
-		
+		sonidoGalopar.stop()
+		game.sound("fight.wav").play()
 		game.addVisual(new Visual(image = "colix.png", position = new Position(x = 9 , y = 0)))
 		
 		game.removeTickEvent("avanzaJugador")

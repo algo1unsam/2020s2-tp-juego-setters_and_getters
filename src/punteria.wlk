@@ -96,7 +96,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		sonidoReloj.stop()
 		game.removeTickEvent("mueveDiana")
 		caballerosRivales.dificultad().adjudicaPunteria(time)
-		game.addVisual(new Visual(image = "mensajeEnter.png", position = new Position(x = 25, y = 1)))
+		game.addVisual(new Visual(image = "mensajeEnter.png", position = new Position(x = 13, y = 10)))
 	}
 
 }
