@@ -46,6 +46,7 @@ object caballerosRivales {
 	}
 
 	method siguienteEtapa(nuevaEtapa) {
+		game.sound("siguiente.wav").play()
 		etapa = nuevaEtapa
 		etapa.setearVisual()
 	}

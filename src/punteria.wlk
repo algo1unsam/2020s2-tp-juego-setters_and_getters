@@ -3,9 +3,12 @@ import clasesComunes.*
 import caballerosRivales.*
 import resultado.*
 import personajes.*
+
 object punteria inherits Etapa(image = "background_2.png", position = game.at(0, 0)) {
 
+	const sonidoReloj = game.sound("reloj.wav")
 	var finPantalla = 0
+
 	override method setearVisual() {
 		game.addVisual(self)
 		rivalFrente.setearVisual()
@@ -15,12 +18,13 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		tiempo.setearVisual()
 		game.onTick(3000, "corre tiempo", { tiempo.moverse(game.at(0, 0))})
 		self.enfrentados(caballerosRivales.dificultad())
+		sonidoReloj.shouldLoop(true) // Hago que se repita
+		sonidoReloj.play()
 	}
 
 	override method teclaEnter() {
 		if (finPantalla == 1) {
-			//game.say(flecha, flecha.seleccion().toString() + "Km/h")
-			if(tiempo.darTiempo() != 1){ //Esta desfazado 1 segundo
+			if (tiempo.darTiempo() != 1) { // Esta desfazado 1 segundo
 				jugadorInvisible.callar()
 				game.removeVisual(jugadorInvisible)
 			}
@@ -33,30 +37,50 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 	// max inf izq -> fila:13 | columna:0
 	// max inf der -> fila:43 | columna:0
 	override method teclaArriba() {
-		if ((mira.position().y() < 28) &&  (finPantalla == 0)){
-			mira.moverse(mira.position().up(1))
-			lanza.moverse(lanza.position().up(1))
+		if (finPantalla == 0) {
+			if (mira.position().y() < 28) {
+				game.sound("tecla.wav").play()
+				mira.moverse(mira.position().up(1))
+				lanza.moverse(lanza.position().up(1))
+			} else {
+				game.sound("mov_invalido.wav").play()
+			}
 		}
 	}
 
 	override method teclaAbajo() {
-		if ((mira.position().y() > 9) &&  (finPantalla == 0)) {
-			mira.moverse(mira.position().down(1))
-			lanza.moverse(lanza.position().down(1))
+		if (finPantalla == 0) {
+			if (mira.position().y() > 9) {
+				game.sound("tecla.wav").play()
+				mira.moverse(mira.position().down(1))
+				lanza.moverse(lanza.position().down(1))
+			} else {
+				game.sound("mov_invalido.wav").play()
+			}
 		}
 	}
 
 	override method teclaIzquierda() {
-		if ((mira.position().x() > 14) &&  (finPantalla == 0)) {
-			mira.moverse(mira.position().left(1))
-			lanza.moverse(lanza.position().left(1))
+		if (finPantalla == 0) {
+			if (mira.position().x() > 14) {
+				game.sound("tecla.wav").play()
+				mira.moverse(mira.position().left(1))
+				lanza.moverse(lanza.position().left(1))
+			} else {
+				game.sound("mov_invalido.wav").play()
+			}
 		}
 	}
 
 	override method teclaDerecha() {
-		if ((mira.position().x() < 34)&&  (finPantalla == 0)) {
-			mira.moverse(mira.position().right(1))
-			lanza.moverse(lanza.position().right(1))
+		if (finPantalla == 0) {
+			if (mira.position().x() < 34) {
+				game.sound("tecla.wav").play()
+				mira.moverse(mira.position().right(1))
+				lanza.moverse(lanza.position().right(1))
+			} else {
+				game.sound("mov_invalido.wav").play()
+			}
 		}
 	}
 
@@ -64,18 +88,15 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		game.onTick(dificultad.velocidadSegunNivel() * 1000, "mueveDiana", { diana.moverse(new Position(x = diana.nuevaPosicionX(), y = diana.nuevaPosicionY()))})
 	}
 
-
 	// se acabo el tiempo o la mira choco con la punteria, se llama a este metodo
 	// si tiempo es 0 , quiere decir que no alcanzo la mira a tiempo, no debe recibir ningun punto
 	method capturarPunteria(time) {
-		finPantalla = 1 
+		finPantalla = 1
 		tiempo.terminoTiempo() // remuevo el ontick
+		sonidoReloj.stop()
 		game.removeTickEvent("mueveDiana")
 		caballerosRivales.dificultad().adjudicaPunteria(time)
-		game.addVisual(new Visual(image = "mensajeEnter.png", position = new Position(x = 25, y =1)))
-		//game.onTick(5000, "pantalla", {caballerosRivales.siguienteEtapa(resultado)})	LO SAQUE PARA DAR OPCION A TECLA ENTER
-		//falta ver que pasa con la mira y lanza, hay que detener colision
-		
+		game.addVisual(new Visual(image = "mensajeEnter.png", position = new Position(x = 25, y = 1)))
 	}
 
 }
@@ -119,11 +140,11 @@ object mira inherits Puntero(image = "mira.png", position = game.at(29, 18)) {
 	}
 
 	override method seleccion() {
-		if (self.position() == diana.position() ) {
+		if (self.position() == diana.position()) {
 			// hay colision con la mira, llamamos a la punteria y le pasamos el tiempo
 			// para determinar la cantidad de puntos que obtiene
-			jugadorInvisible.aparecerEn(30,20)
-			jugadorInvisible.decirConstantemente("Me pegaste " + (tiempo.darTiempo()*100).toString()+ "!")
+			jugadorInvisible.aparecerEn(30, 20)
+			jugadorInvisible.decirConstantemente("Me pegaste " + (tiempo.darTiempo() * 100).toString() + "!")
 			diana.image("dianaApuntada.png")
 			diana.position(diana.position().down(1))
 			diana.position(diana.position().left(2))
@@ -151,10 +172,9 @@ object tiempo inherits Puntero(image = "tiempo_5.png", position = game.at(43, 20
 		if (tiempo > 1) {
 			tiempo -= 1
 			self.image("tiempo_" + tiempo.toString() + ".png")
-			
 		} else {
 			self.image("tiempo_0.png")
-			punteria.capturarPunteria(0)	//Se le terminó el tiempo al usuario y le doy puntaje 0
+			punteria.capturarPunteria(0) // Se le terminó el tiempo al usuario y le doy puntaje 0
 		}
 	}
 
@@ -165,4 +185,3 @@ object tiempo inherits Puntero(image = "tiempo_5.png", position = game.at(43, 20
 	method darTiempo() = tiempo
 
 }
-
