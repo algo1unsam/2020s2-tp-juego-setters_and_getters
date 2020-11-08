@@ -24,6 +24,7 @@ object jugador inherits Caballero(image = "caballero_azul.png", position = game.
 	method hayColision() {
 		return self.position().x() == 17
 	}
+	
 
 }
 
@@ -37,5 +38,15 @@ object rival inherits Caballero(image = "caballero_rojo.png", position = game.at
 		self.position(self.movimiento())
 	}
 
+}
+
+object rivalInvisible inherits Caballero(image = "ImagenVacia.png", position = game.at(0, 2)){
+	override method movimiento() {}
+	override method moverse() {}
+}
+
+object jugadorInvisible inherits Caballero(image = "ImagenVacia.png", position = game.at(0, 2)){
+	override method movimiento() {}
+	override method moverse() {}
 }
 

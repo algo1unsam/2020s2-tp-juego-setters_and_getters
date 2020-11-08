@@ -34,14 +34,36 @@ class Etapa inherits Visual {
 class Caballero inherits Visual {
 	var property velocidadAdquirida = 0
 	var property punteriaAdquirida = 0
-	
+
 	method moverse() 
 	method movimiento()
+	
 	method decimePuntaje(){
-		game.say(self, "Velocidad= " + velocidadAdquirida.toString() + " Punteria= " + punteriaAdquirida.toString())
+		game.say(self, self.puntaje() )
 	}
-	method decirConstantemente(){
-		game.onTick(100, "decirConstante", { => self.decimePuntaje() })
+	
+	method puntaje(){
+		return velocidadAdquirida.toString() + "Km/h " + punteriaAdquirida.toString()+ "Pts"
+	}
+	method decirConstantemente(mensaje){
+		game.onTick(100, "decirConstante", { => game.say(self, mensaje ) } )
+	}
+	
+	method callar(){
+		game.removeTickEvent("decirConstante")
+	}
+	
+	method decimeVelocidad(){
+		game.say(self, velocidadAdquirida.toString() + "Km/h")
+	}
+	
+	method decimePunteria(){
+		game.say(self, punteriaAdquirida.toString()+ "Pts")
+	}
+	
+	method aparecerEn(x,y){
+		self.position(game.at(x, y))
+		game.addVisual(self)
 	}
 }
 
@@ -86,7 +108,7 @@ class Dificultad {
 		jugador.punteriaAdquirida(time*100) //al ser nivel 1 , gana todo el puntaje del enemigo
 		
 		
-		game.say(tiempo,(time*100).toString()) 
+		
 		
 	}
 }

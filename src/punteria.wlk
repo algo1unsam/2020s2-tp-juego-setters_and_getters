@@ -18,7 +18,14 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 	}
 
 	override method teclaEnter() {
-		
+		if (finPantalla == 1) {
+			//game.say(flecha, flecha.seleccion().toString() + "Km/h")
+			if(tiempo.darTiempo() != 1){ //Esta desfazado 1 segundo
+				jugadorInvisible.callar()
+				game.removeVisual(jugadorInvisible)
+			}
+			caballerosRivales.siguienteEtapa(resultado)
+		}
 	}
 
 	// max superior derecho -> fila:43 | columna:30
@@ -65,7 +72,8 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		tiempo.terminoTiempo() // remuevo el ontick
 		game.removeTickEvent("mueveDiana")
 		caballerosRivales.dificultad().adjudicaPunteria(time)
-		game.onTick(5000, "pantalla", {caballerosRivales.siguienteEtapa(resultado)})	
+		game.addVisual(new Visual(image = "mensajeEnter.png", position = new Position(x = 25, y =1)))
+		//game.onTick(5000, "pantalla", {caballerosRivales.siguienteEtapa(resultado)})	LO SAQUE PARA DAR OPCION A TECLA ENTER
 		//falta ver que pasa con la mira y lanza, hay que detener colision
 		
 	}
@@ -114,6 +122,11 @@ object mira inherits Puntero(image = "mira.png", position = game.at(29, 18)) {
 		if (self.position() == diana.position() ) {
 			// hay colision con la mira, llamamos a la punteria y le pasamos el tiempo
 			// para determinar la cantidad de puntos que obtiene
+			jugadorInvisible.aparecerEn(30,20)
+			jugadorInvisible.decirConstantemente("Me pegaste " + (tiempo.darTiempo()*100).toString()+ "!")
+			diana.image("dianaApuntada.png")
+			diana.position(diana.position().down(1))
+			diana.position(diana.position().left(2))
 			punteria.capturarPunteria(tiempo.darTiempo())
 		}
 	}
@@ -141,7 +154,7 @@ object tiempo inherits Puntero(image = "tiempo_5.png", position = game.at(43, 20
 			
 		} else {
 			self.image("tiempo_0.png")
-			punteria.capturarPunteria(0)
+			punteria.capturarPunteria(0)	//Se le terminó el tiempo al usuario y le doy puntaje 0
 		}
 	}
 
