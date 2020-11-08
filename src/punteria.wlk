@@ -94,6 +94,11 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		finPantalla = 1
 		tiempo.terminoTiempo() // remuevo el ontick
 		sonidoReloj.stop()
+		if (time == 0) {
+			game.sound("gong.wav").play()
+		} else {
+			game.sound("golpe.wav").play()
+		}
 		game.removeTickEvent("mueveDiana")
 		caballerosRivales.dificultad().adjudicaPunteria(time)
 		game.addVisual(new Visual(image = "mensajeEnter.png", position = new Position(x = 13, y = 10)))
@@ -146,7 +151,6 @@ object mira inherits Puntero(image = "mira.png", position = game.at(29, 18)) {
 			jugadorInvisible.aparecerEn(30, 20)
 			jugadorInvisible.decirConstantemente("Me pegaste " + (tiempo.darTiempo() * 100).toString() + "!")
 			diana.image("dianaApuntada.png")
-			game.sound("golpe.wav").play()
 			diana.position(diana.position().down(1))
 			diana.position(diana.position().left(2))
 			punteria.capturarPunteria(tiempo.darTiempo())
@@ -186,3 +190,4 @@ object tiempo inherits Puntero(image = "tiempo_5.png", position = game.at(43, 20
 	method darTiempo() = tiempo
 
 }
+
