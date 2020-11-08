@@ -146,6 +146,7 @@ object mira inherits Puntero(image = "mira.png", position = game.at(29, 18)) {
 			jugadorInvisible.aparecerEn(30, 20)
 			jugadorInvisible.decirConstantemente("Me pegaste " + (tiempo.darTiempo() * 100).toString() + "!")
 			diana.image("dianaApuntada.png")
+			game.sound("golpe.wav").play()
 			diana.position(diana.position().down(1))
 			diana.position(diana.position().left(2))
 			punteria.capturarPunteria(tiempo.darTiempo())
