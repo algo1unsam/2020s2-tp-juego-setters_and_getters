@@ -102,10 +102,6 @@ class Dificultad {
 		return resulVelocidad or resulPunteria
 	}
 	
-	 method adjudicaPunteria(time){
-
-		jugador.punteriaAdquirida(time*100) //al ser nivel 1 , gana todo el puntaje del enemigo
-
-	}
+	
 }
 
