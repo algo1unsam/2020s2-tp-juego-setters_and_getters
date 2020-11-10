@@ -11,8 +11,8 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 	const sonidoGalopar = game.sound("galopar.wav")
 	override method setearVisual() {
 		game.addVisual(self)
-		jugador.setearVisual()
-		rival.setearVisual()
+		jugador.aparecerEn(30, 7)
+		rival.aparecerEn(0, 2)
 		flecha.setearVisual()
 	}
 
@@ -29,6 +29,7 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 
 	override method teclaEnter() {
 		if (jugador.hayColision()) {
+			hayOnTick = 0
 			//game.say(flecha, flecha.seleccion().toString() + "Km/h")
 			game.removeVisual(jugadorInvisible)
 			game.removeVisual(self)
