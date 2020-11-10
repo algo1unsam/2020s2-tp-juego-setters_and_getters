@@ -3,7 +3,7 @@ import clasesComunes.*
 import caballerosRivales.*
 import resultado.*
 import personajes.*
-
+import carteles.*
 object punteria inherits Etapa(image = "background_2.png", position = game.at(0, 0)) {
 
 	const sonidoReloj = game.sound("reloj.wav")
@@ -101,7 +101,9 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		}
 		game.removeTickEvent("mueveDiana")
 		jugador.punteriaAdquirida(time*90) 
-		game.addVisual(new Visual(image = "mensajeEnter.png", position = new Position(x = 14, y = 9)))
+		mensajeEnter.position(  new Position(x = 14, y = 9))
+		mensajeEnter.setearVisual()
+		//game.addVisual(new Visual(image = "mensajeEnter.png", position = new Position(x = 14, y = 9)))
 	}
 
 }

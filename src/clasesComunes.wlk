@@ -2,6 +2,7 @@ import wollok.game.*
 import personajes.*
 import resultado.*
 import punteria.*
+
 class Visual {
 
 	var property image

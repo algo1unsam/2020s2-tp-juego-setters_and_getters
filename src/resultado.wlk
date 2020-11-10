@@ -3,9 +3,23 @@ import clasesComunes.*
 import caballerosRivales.*
 import niveles.*
 import personajes.*
-
+import portada.*
 object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at(0, 0)){
 
+	override method teclaEnter() {
+
+            game.removeVisual(jugador)
+            game.removeVisual(rival)
+            jugadorInvisible.callar()
+            rivalInvisible.callar()
+            game.removeVisual(jugadorInvisible)
+            game.removeVisual(rivalInvisible)
+            game.removeVisual(self)
+			//game.removeVisual()
+            caballerosRivales.siguienteEtapa(portada)
+
+    }
+	
 	override method setearVisual() {
 		game.addVisual(self) //Coloco el fondo de pantalla
 		
