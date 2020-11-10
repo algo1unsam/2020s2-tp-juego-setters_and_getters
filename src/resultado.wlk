@@ -6,20 +6,23 @@ import personajes.*
 import portada.*
 import carteles.*
 object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at(0, 0)){
-
+	var property habilitoEnter = 0
 	override method teclaEnter() {
-
+			if(habilitoEnter == 1){
             game.removeVisual(jugador)
             game.removeVisual(rival)
             jugadorInvisible.callar()
             rivalInvisible.callar()
             game.removeVisual(jugadorInvisible)
             game.removeVisual(rivalInvisible)
+            game.removeVisual(mensajeEnter)
+            habilitoEnter = 0
             game.removeVisual(self)
             game.removeVisual(mensajeResultado)
             caballerosRivales.resumeSonidoGeneral()
+            game.removeVisual(portada)
             caballerosRivales.siguienteEtapa(portada)
-
+		}
     }
 	
 	override method setearVisual() {
@@ -35,6 +38,8 @@ object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at
 		//Demoro a que los caballeros digan su puntaje
 		game.schedule(600, {jugadorInvisible.decirConstantemente(jugador.puntaje())})
 		game.schedule(600, {rivalInvisible.decirConstantemente(rival.puntaje())})
+		
+		game.schedule(2000, {mensajeEnter.aparecerEn(25, 1) habilitoEnter = 1})
 		
 		caballerosRivales.detenerSonidoGeneral() //Detengo la musica para que se reconozca el sonido del resultado
 

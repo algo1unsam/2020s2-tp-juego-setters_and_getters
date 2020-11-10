@@ -11,6 +11,11 @@ class Visual {
 	method setearVisual() {
 		game.addVisual(self)
 	}
+	
+	method aparecerEn(x,y){
+		self.position(game.at(x, y))
+		game.addVisual(self)
+	}
 
 }
 
@@ -62,10 +67,6 @@ class Caballero inherits Visual {
 		game.say(self, punteriaAdquirida.toString()+ "Pts")
 	}
 	
-	method aparecerEn(x,y){
-		self.position(game.at(x, y))
-		game.addVisual(self)
-	}
 }
 
 class Puntero inherits Visual {
