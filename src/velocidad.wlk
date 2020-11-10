@@ -8,7 +8,8 @@ import carteles.*
 object velocidad inherits Etapa(image = "background_1.png", position = game.at(0, 0)) {
 
 	var hayOnTick = 0
-	const sonidoGalopar = game.sound("galopar.wav")
+	//const sonidoGalopar = game.sound("galopar.wav")
+	//const sonidoCaballo = game.sound("caballo.wav")
 	override method setearVisual() {
 		game.addVisual(self)
 		jugador.aparecerEn(30, 7)
@@ -18,8 +19,7 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 
 	override method teclaEspaciadora() {
 		if (hayOnTick == 0) {
-			game.sound("caballo.wav").play()
-			sonidoGalopar.play()
+			//sonidoCaballo.play()
 			self.tomaVelocidad()
 			jugadorInvisible.aparecerEn(48,flecha.position().y()-1)
 			jugadorInvisible.decirConstantemente(flecha.seleccion().toString() + "Km/h")
@@ -50,8 +50,10 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 	}
 
 	method colisionCaballeros(unaPosicion) {
-		sonidoGalopar.stop()
-		game.sound("fight.wav").play()
+		//sonidoCaballo.stop()
+		//sonidoGalopar.stop()
+		
+		//game.sound("fight.wav").play()
 		colision.setearVisual()
 		game.removeTickEvent("avanzaJugador")
 		game.removeTickEvent("avanzaRival")

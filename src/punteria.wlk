@@ -6,7 +6,7 @@ import personajes.*
 import carteles.*
 object punteria inherits Etapa(image = "background_2.png", position = game.at(0, 0)) {
 
-	const sonidoReloj = game.sound("reloj.wav")
+	//const sonidoReloj = game.sound("reloj.wav")
 	var finPantalla = 0
 
 	override method setearVisual() {
@@ -18,8 +18,8 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		tiempo.setearVisual()
 		game.onTick(3000, "corre tiempo", { tiempo.moverse(game.at(0, 0))})
 		self.enfrentados(caballerosRivales.dificultad())
-		sonidoReloj.shouldLoop(true) // Hago que se repita
-		sonidoReloj.play()
+		//sonidoReloj.shouldLoop(true) // Hago que se repita
+		//sonidoReloj.play()
 	}
 
 	override method teclaEnter() {
@@ -35,6 +35,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 			game.removeVisual(lanza)
 			game.removeVisual(tiempo)
 			game.removeVisual(mensajeEnter)
+			finPantalla = 0
 			caballerosRivales.siguienteEtapa(resultado)
 		}
 	}
@@ -46,11 +47,11 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 	override method teclaArriba() {
 		if (finPantalla == 0) {
 			if (mira.position().y() < 28) {
-				game.sound("tecla.wav").play()
+				//game.sound("tecla.wav").play()
 				mira.moverse(mira.position().up(1))
 				lanza.moverse(lanza.position().up(1))
 			} else {
-				game.sound("mov_invalido.wav").play()
+				//game.sound("mov_invalido.wav").play()
 			}
 		}
 	}
@@ -58,11 +59,11 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 	override method teclaAbajo() {
 		if (finPantalla == 0) {
 			if (mira.position().y() > 9) {
-				game.sound("tecla.wav").play()
+				//game.sound("tecla.wav").play()
 				mira.moverse(mira.position().down(1))
 				lanza.moverse(lanza.position().down(1))
 			} else {
-				game.sound("mov_invalido.wav").play()
+				//game.sound("mov_invalido.wav").play()
 			}
 		}
 	}
@@ -70,11 +71,11 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 	override method teclaIzquierda() {
 		if (finPantalla == 0) {
 			if (mira.position().x() > 14) {
-				game.sound("tecla.wav").play()
+				//game.sound("tecla.wav").play()
 				mira.moverse(mira.position().left(1))
 				lanza.moverse(lanza.position().left(1))
 			} else {
-				game.sound("mov_invalido.wav").play()
+				//game.sound("mov_invalido.wav").play()
 			}
 		}
 	}
@@ -82,11 +83,11 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 	override method teclaDerecha() {
 		if (finPantalla == 0) {
 			if (mira.position().x() < 34) {
-				game.sound("tecla.wav").play()
+				//game.sound("tecla.wav").play()
 				mira.moverse(mira.position().right(1))
 				lanza.moverse(lanza.position().right(1))
 			} else {
-				game.sound("mov_invalido.wav").play()
+				//game.sound("mov_invalido.wav").play()
 			}
 		}
 	}
@@ -100,11 +101,11 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 	method capturarPunteria(time) {
 		finPantalla = 1
 		tiempo.terminoTiempo() // remuevo el ontick
-		sonidoReloj.stop()
+		//sonidoReloj.stop()
 		if (time == 0) {
-			game.sound("gong.wav").play()
+			//game.sound("gong.wav").play()
 		} else {
-			game.sound("golpe.wav").play()
+		//	game.sound("golpe.wav").play()
 		}
 		game.removeTickEvent("mueveDiana")
 		jugador.punteriaAdquirida(time*90) 
