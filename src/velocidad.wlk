@@ -31,13 +31,11 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 		if (jugador.hayColision()) {
 			//game.say(flecha, flecha.seleccion().toString() + "Km/h")
 			game.removeVisual(jugadorInvisible)
-			
 			game.removeVisual(self)
-			
 			game.removeVisual(flecha)
-			game.removeVisual(mensajeEnter)
 			jugadorInvisible.callar()
-			game.removeVisual(jugadorInvisible)
+			game.removeVisual(mensajeEnter)
+			game.removeVisual(colision)
 			caballerosRivales.siguienteEtapa(punteria)
 			
 		}
@@ -53,8 +51,7 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 	method colisionCaballeros(unaPosicion) {
 		sonidoGalopar.stop()
 		game.sound("fight.wav").play()
-		game.addVisual(new Visual(image = "colix.png", position = new Position(x = 9 , y = 0)))
-		
+		colision.setearVisual()
 		game.removeTickEvent("avanzaJugador")
 		game.removeTickEvent("avanzaRival")
 		game.removeVisual(rival)

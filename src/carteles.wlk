@@ -13,3 +13,9 @@ object mensajeResultado inherits Visual(image = "victoria.png", position = game.
 	
 	
 }
+
+
+object colision inherits Visual(image = "colix.png", position = new Position(x = 9 , y = 0)){
+	
+	
+}
