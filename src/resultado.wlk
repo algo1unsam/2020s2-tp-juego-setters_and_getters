@@ -17,6 +17,7 @@ object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at
             game.removeVisual(rivalInvisible)
             game.removeVisual(self)
             game.removeVisual(mensajeResultado)
+            caballerosRivales.resumeSonidoGeneral()
             caballerosRivales.siguienteEtapa(portada)
 
     }
@@ -43,12 +44,12 @@ object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at
 			mensajeResultado.image("victoria.png")		
 			mensajeResultado.setearVisual()
 			//game.addVisual(new Visual(image = "victoria.png", position = game.at(17, 18)))
-			//game.sound("victoria.wav").play()
+			game.sound("victoria.wav").play()
 		} else {
 			mensajeResultado.image("derrota.png")		
 			mensajeResultado.setearVisual()
 			//game.addVisual(new Visual(image = "derrota.png", position = game.at(17, 18)))
-			//game.sound("derrota.wav").play()
+			game.sound("derrota.wav").play()
 		}
 	}
 	
