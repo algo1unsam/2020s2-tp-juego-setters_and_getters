@@ -110,6 +110,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		finPantalla = 1
 		tiempo.terminoTiempo() // remuevo el ontick
 		sonidoReloj.pause()
+		
 		if (time == 0) {
 			game.sound("gong.wav").play()
 		} else {
@@ -118,7 +119,6 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		game.removeTickEvent("mueveDiana")
 		jugador.punteriaAdquirida(time*90) 
 		mensajeEnter.aparecerEn(14, 9)
-		//game.addVisual(new Visual(image = "mensajeEnter.png", position = new Position(x = 14, y = 9)))
 	}
 
 }
@@ -135,11 +135,6 @@ object rivalFrente inherits Caballero(image = "caballero_rojo_frente.png", posit
 
 object diana inherits Puntero(image = "diana.png", position = game.at(29, 17)) {
 
-	var property posiciones = []
-
-	method agregarPosiciones(nivel) {
-		(nivel * 5).times({ i => self.posiciones().add(new Position(x = self.nuevaPosicionX(), y = self.nuevaPosicionY()))})
-	}
 
 	method nuevaPosicionX() {
 		return 26.randomUpTo(30).truncate(0)
@@ -166,10 +161,9 @@ object mira inherits Puntero(image = "mira.png", position = game.at(29, 18)) {
 			// hay colision con la mira, llamamos a la punteria y le pasamos el tiempo
 			// para determinar la cantidad de puntos que obtiene
 			jugadorInvisible.aparecerEn(30, 20)
-			jugadorInvisible.decirConstantemente("Me pegaste " + (tiempo.darTiempo() * 100).toString() + "!")
+			jugadorInvisible.decirConstantemente("Me pegaste " + (tiempo.darTiempo() * 90).toString() + "!")
 			diana.image("dianaApuntada.png")
-			diana.position(diana.position().down(1))
-			diana.position(diana.position().left(2))
+			diana.position(diana.position().down(1).left(2))
 			punteria.capturarPunteria(tiempo.darTiempo())
 		}
 	}
@@ -200,11 +194,10 @@ object tiempo inherits Puntero(image = "tiempo_5.png", position = game.at(43, 20
 		tiempo -= 1
 		self.image("tiempo_" + tiempo.toString() + ".png")
 		if (tiempo == 0){
-				punteria.capturarPunteria(tiempo) // Se le terminó el tiempo al usuario y le doy puntaje 0
+				punteria.capturarPunteria(tiempo) // Se le terminó el tiempo al usuario 
 		}
 			
 	}
-	
 
 	method terminoTiempo() {
 		game.removeTickEvent("corre tiempo")

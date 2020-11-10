@@ -65,9 +65,7 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 		game.removeTickEvent("avanzaRival")
 		game.removeVisual(rival)
 		game.removeVisual(jugador)
-		mensajeEnter.position(new Position(x = 15, y =1))
-		mensajeEnter.setearVisual()
-		//game.addVisual(new Visual(image = "mensajeEnter.png", position = new Position(x = 15, y =1)))
+		mensajeEnter.aparecerEn(15, 1)
 	}
 
 }
@@ -89,9 +87,9 @@ object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "
 		}
 	}
 
-	override method seleccion() = if (self.position().y().between(7, 17)) {
+	override method seleccion() = if (self.position().y().between(7, 16)) {
 		90
-	} else if (self.position().y().between(17, 21)) {
+	} else if (self.position().y().between(16, 21)) {
 		220
 	} else {
 		320
