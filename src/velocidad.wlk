@@ -30,9 +30,16 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 	override method teclaEnter() {
 		if (jugador.hayColision()) {
 			//game.say(flecha, flecha.seleccion().toString() + "Km/h")
-			caballerosRivales.siguienteEtapa(punteria)
+			game.removeVisual(jugadorInvisible)
+			
+			game.removeVisual(self)
+			
+			game.removeVisual(flecha)
+			game.removeVisual(mensajeEnter)
 			jugadorInvisible.callar()
 			game.removeVisual(jugadorInvisible)
+			caballerosRivales.siguienteEtapa(punteria)
+			
 		}
 	}
 
@@ -52,7 +59,7 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 		game.removeTickEvent("avanzaRival")
 		game.removeVisual(rival)
 		game.removeVisual(jugador)
-		mensajeEnter.position( new Position(x = 15, y =1))
+		mensajeEnter.position(new Position(x = 15, y =1))
 		mensajeEnter.setearVisual()
 		//game.addVisual(new Visual(image = "mensajeEnter.png", position = new Position(x = 15, y =1)))
 	}

@@ -9,6 +9,7 @@ object mensajeEnter inherits Visual(image = "mensajeEnter.png", position = new P
 
 
 
-object mensajeResultado{
+object mensajeResultado inherits Visual(image = "victoria.png", position = game.at(17, 18)){
+	
 	
 }

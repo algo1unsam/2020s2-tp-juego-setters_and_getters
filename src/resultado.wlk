@@ -4,6 +4,7 @@ import caballerosRivales.*
 import niveles.*
 import personajes.*
 import portada.*
+import carteles.*
 object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at(0, 0)){
 
 	override method teclaEnter() {
@@ -15,7 +16,7 @@ object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at
             game.removeVisual(jugadorInvisible)
             game.removeVisual(rivalInvisible)
             game.removeVisual(self)
-			//game.removeVisual()
+            game.removeVisual(mensajeResultado)
             caballerosRivales.siguienteEtapa(portada)
 
     }
@@ -37,11 +38,16 @@ object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at
 		caballerosRivales.detenerSonidoGeneral() //Detengo la musica para que se reconozca el sonido del resultado
 
 		//Le pido a CaballerosRivales que segun la dificultad elegida decida si gano o pierdo
-		if (caballerosRivales.dificultad().consultaVictoria(self.ganoEnVelocidad(), self.ganoEnPunteria())) {		
-			game.addVisual(new Visual(image = "victoria.png", position = game.at(17, 18)))
+		if (caballerosRivales.dificultad().consultaVictoria(self.ganoEnVelocidad(), self.ganoEnPunteria())) {
+				
+			mensajeResultado.image("victoria.png")		
+			mensajeResultado.setearVisual()
+			//game.addVisual(new Visual(image = "victoria.png", position = game.at(17, 18)))
 			game.sound("victoria.wav").play()
 		} else {
-			game.addVisual(new Visual(image = "derrota.png", position = game.at(17, 18)))
+			mensajeResultado.image("derrota.png")		
+			mensajeResultado.setearVisual()
+			//game.addVisual(new Visual(image = "derrota.png", position = game.at(17, 18)))
 			game.sound("derrota.wav").play()
 		}
 	}

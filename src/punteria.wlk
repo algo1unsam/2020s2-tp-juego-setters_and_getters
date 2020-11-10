@@ -28,6 +28,13 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 				jugadorInvisible.callar()
 				game.removeVisual(jugadorInvisible)
 			}
+			game.removeVisual(self)
+			game.removeVisual(rivalFrente)
+			game.removeVisual(diana)
+			game.removeVisual(mira)
+			game.removeVisual(lanza)
+			game.removeVisual(tiempo)
+			game.removeVisual(mensajeEnter)
 			caballerosRivales.siguienteEtapa(resultado)
 		}
 	}
