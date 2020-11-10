@@ -101,7 +101,7 @@ class Dificultad {
 	}
 	
 	method consultaVictoria(resulVelocidad, resulPunteria) {
-		return resulVelocidad or resulPunteria
+		return (resulVelocidad or resulPunteria) and (mira.huboMovimiento()==1)
 	}
 	
 	

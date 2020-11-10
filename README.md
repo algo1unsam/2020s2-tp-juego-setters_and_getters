@@ -16,14 +16,14 @@ En este combate, hay dos instancias de juego Punteria & Velocidad:
 
 El jugador vence al oponente segun las siguientes reglas:
 
->Para nivel 1: Debe ganar en alguna de las dos instancias(Punteria o Velocidad).
+Para nivel 1: Debe ganar en alguna de las dos instancias(Punteria o Velocidad).
 				•Para ganar en Velocidad, el jugador debe adquirir 220 Km/h o más.
-				•Para ganar en Punteria, el jugador apuntar a la diana con al menos 2 unidades de tiempo restante.
+				•Para ganar en Punteria, el jugador debe apuntar a la diana con al menos 2 unidades de tiempo restante.
 				
->Para nivel 2: Debe ganar en alguna de las dos instancias(Punteria o Velocidad).
+Para nivel 2: Debe ganar en alguna de las dos instancias(Punteria o Velocidad).
 				•Para ganar en Velocidad, el jugador debe adquirir 220 Km/h o más.
-				•Para ganar en Punteria, el jugador apuntar a la diana con al menos 3 unidades de tiempo restante.	
+				•Para ganar en Punteria, el jugador debe apuntar a la diana con al menos 3 unidades de tiempo restante.	
 				
->Para nivel 2: Debe ganar en las dos instancias(Punteria y Velocidad).
-				•Para ganar en Velocidad, el jugador debe adquirir 320 Km/h Km/h.
-				•Para ganar en Punteria, el jugador apuntar a la diana con al menos 4 unidades de tiempo restante.							
+Para nivel 3: Debe ganar en las dos instancias(Punteria y Velocidad).
+				•Para ganar en Velocidad, el jugador debe adquirir 320 Km/h .
+				•Para ganar en Punteria, el jugador debe apuntar a la diana con al menos 4 unidades de tiempo restante.							

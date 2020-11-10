@@ -4,6 +4,7 @@ import caballerosRivales.*
 import resultado.*
 import personajes.*
 import carteles.*
+
 object punteria inherits Etapa(image = "background_2.png", position = game.at(0, 0)) {
 
 	const sonidoReloj = game.sound("reloj.wav")
@@ -33,6 +34,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 				jugadorInvisible.callar()
 				game.removeVisual(jugadorInvisible)
 			}
+			mira.huboMovimiento(0)
 			game.removeVisual(self)
 			game.removeVisual(rivalFrente)
 			game.removeVisual(diana)
@@ -150,8 +152,10 @@ object diana inherits Puntero(image = "diana.png", position = game.at(29, 17)) {
 }
 
 object mira inherits Puntero(image = "mira.png", position = game.at(29, 18)) {
-
+	var property huboMovimiento = 0
+	
 	override method moverse(posicion) {
+		huboMovimiento = 1
 		self.position(posicion)
 		self.seleccion()
 	}
@@ -164,6 +168,7 @@ object mira inherits Puntero(image = "mira.png", position = game.at(29, 18)) {
 			jugadorInvisible.decirConstantemente("Me pegaste " + (tiempo.darTiempo() * 90).toString() + "!")
 			diana.image("dianaApuntada.png")
 			diana.position(diana.position().down(1).left(2))
+			
 			punteria.capturarPunteria(tiempo.darTiempo())
 		}
 	}
