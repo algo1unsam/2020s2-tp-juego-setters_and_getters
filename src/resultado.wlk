@@ -47,7 +47,7 @@ object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at
 		
 		caballerosRivales.detenerSonidoGeneral() //Detengo la musica para que se reconozca el sonido del resultado
 
-		//Le pido a CaballerosRivales que segun la dificultad elegida decida si gano o pierdo
+		//De caballeros rivales conozco la dificultad elegida y a ella le consulto si gane o no
 		if (caballerosRivales.dificultad().consultaVictoria(self.ganoEnVelocidad(), self.ganoEnPunteria())) {
 				
 			mensajeResultado.image("victoria.png")		

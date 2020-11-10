@@ -31,11 +31,11 @@ object caballerosRivales {
 		sonidoGeneral.shouldLoop(true) // Hago que se repita
 		game.schedule(100, { sonidoGeneral.play()})
 
-	// En la etapa 'portada' se setea el nivel de dificultad
+	// En la etapa 'portada' se setea el nivel de dificultad del rival y se elije pasar a la etapa velocidad
 	}
 
 	method seteoTeclas() {
-//		Seteo de las teclas depende de var etapa
+//		Seteo de las teclas depende del objeto al que apunte etapa
 		keyboard.num1().onPressDo{ etapa.teclaNum(nivelUno)}
 		keyboard.num2().onPressDo{ etapa.teclaNum(nivelDos)}
 		keyboard.num3().onPressDo{ etapa.teclaNum(nivelTres)}
