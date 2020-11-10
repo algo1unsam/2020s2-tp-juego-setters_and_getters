@@ -197,15 +197,14 @@ object tiempo inherits Puntero(image = "tiempo_5.png", position = game.at(43, 20
 	}
 
 	override method moverse(posicion) {
-		if (tiempo > 1) {
-			tiempo -= 1
-			self.image("tiempo_" + tiempo.toString() + ".png")
-		} else {
-			tiempo -= 1
-			self.image("tiempo_0.png")
-			punteria.capturarPunteria(0) // Se le terminó el tiempo al usuario y le doy puntaje 0
+		tiempo -= 1
+		self.image("tiempo_" + tiempo.toString() + ".png")
+		if (tiempo == 0){
+				punteria.capturarPunteria(tiempo) // Se le terminó el tiempo al usuario y le doy puntaje 0
 		}
+			
 	}
+	
 
 	method terminoTiempo() {
 		game.removeTickEvent("corre tiempo")
