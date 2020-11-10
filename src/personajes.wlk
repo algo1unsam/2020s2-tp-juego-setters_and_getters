@@ -1,7 +1,6 @@
 import wollok.game.*
 import velocidad.*
 import punteria.*
-
 import clasesComunes.*
 import portada.*
 import niveles.*
@@ -20,11 +19,9 @@ object jugador inherits Caballero(image = "caballero_azul.png", position = game.
 		return self.position().left(1)
 	}
 
-	
 	method hayColision() {
 		return self.position().x() == 17
 	}
-	
 
 }
 
@@ -40,13 +37,22 @@ object rival inherits Caballero(image = "caballero_rojo.png", position = game.at
 
 }
 
-object rivalInvisible inherits Caballero(image = "ImagenVacia.png", position = game.at(0, 2)){
-	override method movimiento() {}
-	override method moverse() {}
+object rivalInvisible inherits Caballero(image = "ImagenVacia.png", position = game.at(0, 2)) {
+
+	override method movimiento() {
+	}
+
+	override method moverse() {
+	}
+
 }
 
-object jugadorInvisible inherits Caballero(image = "ImagenVacia.png", position = game.at(0, 2)){
-	override method movimiento() {}
-	override method moverse() {}
-}
+object jugadorInvisible inherits Caballero(image = "ImagenVacia.png", position = game.at(0, 2)) {
 
+	override method movimiento() {
+	}
+
+	override method moverse() {
+	}
+
+}

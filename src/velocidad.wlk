@@ -9,7 +9,7 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 
 	var hayOnTick = 0
 	const sonidoGalopar = game.sound("galopar.wav")
-	
+
 	override method setearVisual() {
 		game.addVisual(self)
 		jugador.aparecerEn(30, 7)
@@ -20,24 +20,23 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 	override method teclaEspaciadora() {
 		if (hayOnTick == 0) {
 			game.sound("caballo.wav").play()
-			if (sonidoGalopar.played()){
+			if (sonidoGalopar.played()) {
 				sonidoGalopar.resume()
-			}
-			else{
+			} else {
 				sonidoGalopar.shouldLoop(true)
 				sonidoGalopar.play()
 			}
 			self.tomaVelocidad()
-			jugadorInvisible.aparecerEn(48,flecha.position().y()-1)
+			jugadorInvisible.aparecerEn(48, flecha.position().y() - 1)
 			jugadorInvisible.decirConstantemente(flecha.seleccion().toString() + "Km/h")
 			hayOnTick = 1
-		}	
+		}
 	}
 
 	override method teclaEnter() {
 		if (jugador.hayColision()) {
 			hayOnTick = 0
-			//game.say(flecha, flecha.seleccion().toString() + "Km/h")
+				// game.say(flecha, flecha.seleccion().toString() + "Km/h")
 			game.removeVisual(jugadorInvisible)
 			game.removeVisual(self)
 			game.removeVisual(flecha)
@@ -45,20 +44,18 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 			game.removeVisual(mensajeEnter)
 			game.removeVisual(colision)
 			caballerosRivales.siguienteEtapa(punteria)
-			
 		}
 	}
 
 	method tomaVelocidad() {
-		game.onTick(100, "avanzaRival", { rival.moverse() })
-		game.onTick(100, "avanzaJugador", { jugador.moverse() })
+		game.onTick(100, "avanzaRival", { rival.moverse()})
+		game.onTick(100, "avanzaJugador", { jugador.moverse()})
 		game.removeTickEvent("mueveFlecha")
 		jugador.velocidadAdquirida(flecha.seleccion())
 	}
 
 	method colisionCaballeros(unaPosicion) {
 		sonidoGalopar.pause()
-		
 		game.sound("fight.wav").play()
 		colision.setearVisual()
 		game.removeTickEvent("avanzaJugador")
@@ -70,13 +67,11 @@ object velocidad inherits Etapa(image = "background_1.png", position = game.at(0
 
 }
 
-
-
 object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "flecha_velocidad.png") {
 
 	override method setearVisual() {
 		game.addVisual(self)
-		game.onTick(caballerosRivales.dificultad().velocidadSegunNivel() * 100, "mueveFlecha", { self.moverse(0) })
+		game.onTick(caballerosRivales.dificultad().velocidadSegunNivel() * 100, "mueveFlecha", { self.moverse(0)})
 	}
 
 	override method moverse(posicion) {

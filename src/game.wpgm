@@ -1,12 +1,8 @@
 import wollok.game.*
 import caballerosRivales.*
 
-
-
 program game {
-	
 	caballerosRivales.seteoTablero()
 	caballerosRivales.seteoTeclas()
-	
 	game.start()
 }

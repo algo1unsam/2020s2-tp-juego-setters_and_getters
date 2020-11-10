@@ -30,7 +30,6 @@ object caballerosRivales {
 		etapa.setearVisual()
 		sonidoGeneral.shouldLoop(true) // Hago que se repita
 		game.schedule(100, { sonidoGeneral.play()})
-
 	// En la etapa 'portada' se setea el nivel de dificultad del rival y se elije pasar a la etapa velocidad
 	}
 
@@ -56,9 +55,9 @@ object caballerosRivales {
 	method detenerSonidoGeneral() {
 		sonidoGeneral.pause()
 	}
-	
-	method resumeSonidoGeneral(){
+
+	method resumeSonidoGeneral() {
 		sonidoGeneral.resume()
 	}
-}
 
+}
