@@ -3,9 +3,32 @@ import clasesComunes.*
 import caballerosRivales.*
 import niveles.*
 import personajes.*
-
+import portada.*
+import carteles.*
+import punteria.*
 object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at(0, 0)){
-
+	
+	var property habilitoEnter = 0
+	
+	override method teclaEnter() {
+			if(habilitoEnter == 1){
+            game.removeVisual(jugador)
+            game.removeVisual(rival)
+            jugadorInvisible.callar()
+            rivalInvisible.callar()
+            game.removeVisual(jugadorInvisible)
+            game.removeVisual(rivalInvisible)
+            game.removeVisual(mensajeResultado)
+            game.removeVisual(mensajeEnter)
+            game.removeVisual(self) 
+            caballerosRivales.resumeSonidoGeneral()
+            game.removeVisual(portada)
+            habilitoEnter = 0
+            mira.huboMovimiento(0)
+            caballerosRivales.siguienteEtapa(portada)
+		}
+    }
+	
 	override method setearVisual() {
 		game.addVisual(self) //Coloco el fondo de pantalla
 		
@@ -20,14 +43,21 @@ object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at
 		game.schedule(600, {jugadorInvisible.decirConstantemente(jugador.puntaje())})
 		game.schedule(600, {rivalInvisible.decirConstantemente(rival.puntaje())})
 		
+		game.schedule(2000, {mensajeEnter.aparecerEn(23, 1) habilitoEnter = 1})
+		
 		caballerosRivales.detenerSonidoGeneral() //Detengo la musica para que se reconozca el sonido del resultado
 
 		//Le pido a CaballerosRivales que segun la dificultad elegida decida si gano o pierdo
-		if (caballerosRivales.dificultad().consultaVictoria(self.ganoEnVelocidad(), self.ganoEnPunteria())) {		
-			game.addVisual(new Visual(image = "victoria.png", position = game.at(17, 18)))
+		if (caballerosRivales.dificultad().consultaVictoria(self.ganoEnVelocidad(), self.ganoEnPunteria())) {
+				
+			mensajeResultado.image("victoria.png")		
+			mensajeResultado.setearVisual()
+		
 			game.sound("victoria.wav").play()
 		} else {
-			game.addVisual(new Visual(image = "derrota.png", position = game.at(17, 18)))
+			mensajeResultado.image("derrota.png")		
+			mensajeResultado.setearVisual()
+			
 			game.sound("derrota.wav").play()
 		}
 	}

@@ -3,6 +3,7 @@ import clasesComunes.*
 import caballerosRivales.*
 import resultado.*
 import personajes.*
+import carteles.*
 
 object punteria inherits Etapa(image = "background_2.png", position = game.at(0, 0)) {
 
@@ -18,16 +19,33 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		tiempo.setearVisual()
 		game.onTick(3000, "corre tiempo", { tiempo.moverse(game.at(0, 0))})
 		self.enfrentados(caballerosRivales.dificultad())
-		sonidoReloj.shouldLoop(true) // Hago que se repita
-		sonidoReloj.play()
+		if (sonidoReloj.played()){
+				sonidoReloj.resume()
+			}
+			else{
+				sonidoReloj.shouldLoop(true)// Hago que se repita
+				sonidoReloj.play()
+			}
 	}
 
 	override method teclaEnter() {
 		if (finPantalla == 1) {
-			if (tiempo.darTiempo() != 1) { // Esta desfazado 1 segundo
+			if (tiempo.darTiempo() != 0) { // Esta desfazado 1 segundo
 				jugadorInvisible.callar()
 				game.removeVisual(jugadorInvisible)
 			}
+			
+			game.removeVisual(self)
+			game.removeVisual(rivalFrente)
+			game.removeVisual(diana)
+			game.removeVisual(mira)
+			game.removeVisual(lanza)
+			tiempo.reinicioTiempo()
+			game.removeVisual(tiempo)
+			game.removeVisual(mensajeEnter)
+			mira.reiniciar()
+			finPantalla = 0
+			
 			caballerosRivales.siguienteEtapa(resultado)
 		}
 	}
@@ -93,7 +111,8 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 	method capturarPunteria(time) {
 		finPantalla = 1
 		tiempo.terminoTiempo() // remuevo el ontick
-		sonidoReloj.stop()
+		sonidoReloj.pause()
+		
 		if (time == 0) {
 			game.sound("gong.wav").play()
 		} else {
@@ -101,7 +120,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 		}
 		game.removeTickEvent("mueveDiana")
 		jugador.punteriaAdquirida(time*90) 
-		game.addVisual(new Visual(image = "mensajeEnter.png", position = new Position(x = 14, y = 9)))
+		mensajeEnter.aparecerEn(14, 9)
 	}
 
 }
@@ -118,11 +137,6 @@ object rivalFrente inherits Caballero(image = "caballero_rojo_frente.png", posit
 
 object diana inherits Puntero(image = "diana.png", position = game.at(29, 17)) {
 
-	var property posiciones = []
-
-	method agregarPosiciones(nivel) {
-		(nivel * 5).times({ i => self.posiciones().add(new Position(x = self.nuevaPosicionX(), y = self.nuevaPosicionY()))})
-	}
 
 	method nuevaPosicionX() {
 		return 26.randomUpTo(30).truncate(0)
@@ -138,8 +152,10 @@ object diana inherits Puntero(image = "diana.png", position = game.at(29, 17)) {
 }
 
 object mira inherits Puntero(image = "mira.png", position = game.at(29, 18)) {
-
+	var property huboMovimiento = 0
+	
 	override method moverse(posicion) {
+		huboMovimiento = 1
 		self.position(posicion)
 		self.seleccion()
 	}
@@ -149,12 +165,18 @@ object mira inherits Puntero(image = "mira.png", position = game.at(29, 18)) {
 			// hay colision con la mira, llamamos a la punteria y le pasamos el tiempo
 			// para determinar la cantidad de puntos que obtiene
 			jugadorInvisible.aparecerEn(30, 20)
-			jugadorInvisible.decirConstantemente("Me pegaste " + (tiempo.darTiempo() * 100).toString() + "!")
+			jugadorInvisible.decirConstantemente("Me pegaste " + (tiempo.darTiempo() * 90).toString() + "!")
 			diana.image("dianaApuntada.png")
-			diana.position(diana.position().down(1))
-			diana.position(diana.position().left(2))
+			diana.position(diana.position().down(1).left(2))
+			
 			punteria.capturarPunteria(tiempo.darTiempo())
 		}
+	}
+	
+	method reiniciar(){
+			self.position(game.at(29, 18))
+			diana.image("diana.png") //vuelvo a poner la imagen de diana como estaba
+			lanza.position(self.position().down(9).right(1))
 	}
 
 }
@@ -168,25 +190,28 @@ object lanza inherits Puntero(image = "lanza.png", position = mira.position().do
 
 object tiempo inherits Puntero(image = "tiempo_5.png", position = game.at(43, 20)) {
 
-	var tiempo = 5
+	var property tiempo = 5
 
 	override method seleccion() {
 	}
 
 	override method moverse(posicion) {
-		if (tiempo > 1) {
-			tiempo -= 1
-			self.image("tiempo_" + tiempo.toString() + ".png")
-		} else {
-			self.image("tiempo_0.png")
-			punteria.capturarPunteria(0) // Se le terminó el tiempo al usuario y le doy puntaje 0
+		tiempo -= 1
+		self.image("tiempo_" + tiempo.toString() + ".png")
+		if (tiempo == 0){
+				punteria.capturarPunteria(tiempo) // Se le terminó el tiempo al usuario 
 		}
+			
 	}
 
 	method terminoTiempo() {
 		game.removeTickEvent("corre tiempo")
 	}
 
+	method reinicioTiempo(){
+		self.tiempo(5) //vuelvo a setear el tiempo en 5
+		self.image("tiempo_5.png")
+	}
 	method darTiempo() = tiempo
 
 }

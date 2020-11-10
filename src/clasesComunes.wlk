@@ -2,12 +2,18 @@ import wollok.game.*
 import personajes.*
 import resultado.*
 import punteria.*
+
 class Visual {
 
 	var property image
 	var property position
 
 	method setearVisual() {
+		game.addVisual(self)
+	}
+	
+	method aparecerEn(x,y){
+		self.position(game.at(x, y))
 		game.addVisual(self)
 	}
 
@@ -61,10 +67,6 @@ class Caballero inherits Visual {
 		game.say(self, punteriaAdquirida.toString()+ "Pts")
 	}
 	
-	method aparecerEn(x,y){
-		self.position(game.at(x, y))
-		game.addVisual(self)
-	}
 }
 
 class Puntero inherits Visual {
@@ -99,7 +101,7 @@ class Dificultad {
 	}
 	
 	method consultaVictoria(resulVelocidad, resulPunteria) {
-		return resulVelocidad or resulPunteria
+		return (resulVelocidad or resulPunteria) and (mira.huboMovimiento()==1)
 	}
 	
 	
