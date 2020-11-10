@@ -5,6 +5,7 @@ import niveles.*
 import personajes.*
 import portada.*
 import carteles.*
+import punteria.*
 object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at(0, 0)){
 	
 	var property habilitoEnter = 0
@@ -23,6 +24,7 @@ object resultado inherits Etapa(image = "FondoResultado.jpg", position = game.at
             caballerosRivales.resumeSonidoGeneral()
             game.removeVisual(portada)
             habilitoEnter = 0
+            mira.huboMovimiento(0)
             caballerosRivales.siguienteEtapa(portada)
 		}
     }

@@ -34,7 +34,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 				jugadorInvisible.callar()
 				game.removeVisual(jugadorInvisible)
 			}
-			mira.huboMovimiento(0)
+			
 			game.removeVisual(self)
 			game.removeVisual(rivalFrente)
 			game.removeVisual(diana)
