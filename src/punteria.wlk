@@ -100,7 +100,7 @@ object punteria inherits Etapa(image = "background_2.png", position = game.at(0,
 			game.sound("golpe.wav").play()
 		}
 		game.removeTickEvent("mueveDiana")
-		jugador.punteriaAdquirida(time*100) 
+		jugador.punteriaAdquirida(time*90) 
 		game.addVisual(new Visual(image = "mensajeEnter.png", position = new Position(x = 14, y = 9)))
 	}
 
