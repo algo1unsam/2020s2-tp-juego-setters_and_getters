@@ -83,11 +83,11 @@ object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "
 	}
 
 	override method seleccion() = if (self.position().y().between(7, 16)) {
-		90
+        90
 	} else if (self.position().y().between(16, 21)) {
-		220
+        220
 	} else {
-		320
+        320
 	}
 
 }
