@@ -44,6 +44,7 @@ object caballerosRivales {
 		keyboard.down().onPressDo{ etapa.teclaAbajo()}
 		keyboard.left().onPressDo{ etapa.teclaIzquierda()}
 		keyboard.right().onPressDo{ etapa.teclaDerecha()}
+		keyboard.num0().onPressDo{ game.stop()}
 	}
 
 	method siguienteEtapa(nuevaEtapa) {

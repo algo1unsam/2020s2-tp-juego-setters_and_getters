@@ -75,7 +75,7 @@ object flecha inherits Puntero(position = new Position(x = 49, y = 7), image = "
 	}
 
 	override method moverse(posicion) {
-		if (not (self.position().y() == 22)) {
+		if (!(self.position().y() == 22)) {
 			self.position(self.position().up(1))
 		} else {
 			self.position(self.position().down(15))
